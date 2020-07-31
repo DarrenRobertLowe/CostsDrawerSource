@@ -64,7 +64,7 @@ updateTotals = false;
 // Are we being told to redo the document?
 //gml_pragma("forceinline");  // increases cpu speed but also the exe size (needs to be used per script!)
 
-
+//show_debug_message("RUNNING DOC ORG");
 if  (global.RESTARTING == false) // fixes issues when returning to start page
 and (room == WINDOW)
 {
@@ -307,7 +307,7 @@ and (room == WINDOW)
     
     
     var lpStart = 0;
-    show_debug_message("**** SORTING LAST PAGE ITEMS ****");
+    //show_debug_message("**** SORTING LAST PAGE ITEMS ****");
     // position the items
     for (var i=lpStart; i&lt;ds_list_size(list); i++)                                              // iterate through every item
     {

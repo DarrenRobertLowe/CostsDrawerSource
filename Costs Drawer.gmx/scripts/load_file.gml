@@ -10,6 +10,7 @@
  * 
  * This script will have to do some error handling.
 */
+show_debug_message("running load_file()");
 docVer = 0;
 
 global.USER_FILENAME = global.fileToOpen;
@@ -34,6 +35,8 @@ if (file_exists(global.USER_FILENAME))
     // make sure the file isn't empty
     if !(file_text_eof(file))
     {
+        show_debug_message("...started looking through file...");
+        
         var line = file_text_read_string(file);
         
         if (line = "")
@@ -191,6 +194,8 @@ if (file_exists(global.USER_FILENAME))
             /// CREATE & FILL THE ITEMS AND populate global.listOfItems ///
             while !(file_text_eof(file))                                    // repeat until end of file
             {
+                show_debug_message("... creating actual items now...");
+                
                 file_text_readln(file);                                     // move onto next line
                 var line = file_text_read_string(file);
 
@@ -438,11 +443,13 @@ if (file_exists(global.USER_FILENAME))
             
             
             //////// SUCCESS ///////
+            show_debug_message("successfully loaded file!");
             
             // update filename and directory
             global.FILENAME         = filename_name(global.fileToOpen);
             global.USER_FILENAME    = global.FILENAME;
             global.USER_DIRECTORY   = filename_path(global.fileToOpen);
+            //global.fileToOpen = "";
             window_set_caption(global.FILENAME + " - Costs Drawer");
             
             
@@ -465,18 +472,20 @@ if (file_exists(global.USER_FILENAME))
             create_GUI();
             reset_text();
             
+            show_debug_message("... about to run set_relative_positions because the file is finished loading...");
             with MASTER{set_relative_positions();}
             global.totalRows = totalRows;
             
             view_yview[0] = 0;
             
             global.load_view_y = true; // this will move the view to the proper place
-
+            
             // sort document again
             if exists(DOC_ORGANIZER)
             {
                 with(DOC_ORGANIZER)
                 {
+                show_debug_message("... telling DOC ORG to run...");
                 /// Manually Organize Doc
                 startFrom = -1;
                 alarm[0] = 1;

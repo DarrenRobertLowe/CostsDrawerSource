@@ -5,7 +5,7 @@
  * Called by MASTER create event.
  * Also called when resizing the window or right column.
 */
-
+show_debug_message("running set_relative_positions() :"+string(current_time));
 /// NOTE: minimum height and width is set in MASTER create event.
 var windowHeight = round( window_get_height() );
 var windowWidth  = round( window_get_width()  );

@@ -1,4 +1,6 @@
 // SETUP FIRST PAGE
+show_debug_message("running create_first_page()");
+
 if !ds_exists(global.listOfItems,ds_type_list)
  then global.listOfItems = ds_list_create();
 

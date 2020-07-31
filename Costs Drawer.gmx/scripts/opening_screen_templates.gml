@@ -53,7 +53,7 @@ if (size > 0)
                     if (list == hcTemplatesList) then global.fileToOpen = ( string(hcTemplatesFolder) + "/" +string(fileFromList) );
                     if (list == ccTemplatesList) then global.fileToOpen = ( string(ccTemplatesFolder) + "/" +string(fileFromList) );
                     room_goto(WINDOW);
-                    load_file();
+                    //load_file();
                 }
             }
             

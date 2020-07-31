@@ -1,5 +1,5 @@
 /// load_right_column_lists(file)
-//
+show_debug_message("running load_right_column_lists()");
 file = argument0;
 
 instance_create(x,y,witnesses_SCROLLBAR);
