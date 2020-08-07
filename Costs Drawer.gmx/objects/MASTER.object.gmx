@@ -177,6 +177,9 @@ global.allowBackup          = false;
 global.TIMER                = 0;
 
 
+
+global.popup                = 0;
+
 /* FILE MENU */
 global.menuItemIndent       = 16;
 global.menuSelected         = 0;

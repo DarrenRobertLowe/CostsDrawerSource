@@ -678,6 +678,8 @@
     <sprite>sprites\spr_search</sprite>
     <sprite>sprites\spr_prev_tip</sprite>
     <sprite>sprites\spr_next_tip</sprite>
+    <sprite>sprites\spr_popup_confirm</sprite>
+    <sprite>sprites\spr_popup_cancel</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -783,6 +785,7 @@
         <script>scripts\mouseOverAddress.gml</script>
         <script>scripts\mouseOverCostsPursuant.gml</script>
         <script>scripts\mouseOverVAT.gml</script>
+        <script>scripts\mouse_over_popup_area.gml</script>
       </scripts>
       <scripts name="GUI regions">
         <script>scripts\mouseOverMenuArea.gml</script>
@@ -1617,7 +1620,16 @@
     <object>objects\SEARCH_TEXT</object>
     <object>objects\SEARCH_HIGHLIGHTER</object>
     <object>objects\STARTUP_LOGGER</object>
+    <objects name="POPUPS">
+      <object>objects\POPUP_BUTTON</object>
+      <objects name="Default Items Editor">
+        <object>objects\DEFAULT_ITEMS_EDITOR</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_confirm</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_cancel</object>
+      </objects>
+    </objects>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\OPENING_SCREEN</room>
     <room>rooms\WINDOW</room>

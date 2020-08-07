@@ -53,7 +53,7 @@ update_counsel_shownName(global.JUNIOR_COUNSEL);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// DEFINE TEXT AREA
+            <string>/// DEFINE TEXT AREA
 
 //boxWidth = 200;
 

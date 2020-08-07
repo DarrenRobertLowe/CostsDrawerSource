@@ -1,4 +1,39 @@
 /// APPENDIX_W_AND_OTHER_FEES()
+
+/* Default ttems array anatomy
+ * global.arrayOfHighCourtItemValues[0,0] = "name / description"
+ * global.arrayOfHighCourtItemValues[0,1] = default value;
+ * global.arrayOfHighCourtItemValues[0,2] = custom value;
+*/
+global.arrayOfHighCourtItemValues[0,0] = "Attending Taxation";
+global.arrayOfHighCourtItemValues[0,1] = 12.56;
+global.arrayOfHighCourtItemValues[0,2] = 0;
+global.arrayOfHighCourtItemValues[1,0] = "Stamp On Summons To Tax";
+global.arrayOfHighCourtItemValues[1,1] = 270.00;
+global.arrayOfHighCourtItemValues[1,2] = 0;
+
+
+/* Custom items array anatomy
+ * Note: since there's no "default" value, we're
+ * only concerned with whether the value is for
+ * outlay or professional.
+ *
+ * global.arrayOfHighCourtItemValues[0,0] = "name / description"
+ * global.arrayOfHighCourtItemValues[0,1] = Outlay
+ * global.arrayOfHighCourtItemValues[0,2] = Professional
+*/
+global.arrayOfHighCourtCustomItemValues[0,0] = "This is a custom item description and attending same";
+global.arrayOfHighCourtCustomItemValues[0,1] = 0;
+global.arrayOfHighCourtCustomItemValues[0,2] = 123.45;
+global.arrayOfHighCourtCustomItemValues[1,0] = "This is another custom item description";
+global.arrayOfHighCourtCustomItemValues[1,1] = 0;
+global.arrayOfHighCourtCustomItemValues[1,2] = 78;
+
+
+
+
+
+// values
 global.APPENDIX_W_HC_ATTENDING_TAXATION     = 12.56;
 global.costPerFolio = 0.17;
 global.APPENDIX_W_HC_StampOnSummonsToTax    = 270.00;
