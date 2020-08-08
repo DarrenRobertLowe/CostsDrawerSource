@@ -54,21 +54,24 @@ y2 = (y + sprite_height);
           <argument>
             <kind>1</kind>
             <string>/// interact
-if ( mouse_over_popup_area(x, y, x2, y2) )
+if ( visible )
 {
-    if (mouse_check_button(mb_left))
+    if ( mouse_over_popup_area(x, y, x2, y2) )
     {
-        image_index = 1;
+        if (mouse_check_button(mb_left))
+        {
+            image_index = 1;
+        }
+        else image_index = 0;
         
         if (mouse_check_button_released(mb_left))
         {
             event_user(0);  // do what this button does
-            //alarm[0] = 1;
+            image_index = 0;
         }
     }
     else image_index = 0;
 }
-else image_index = 0;
 </string>
           </argument>
         </arguments>

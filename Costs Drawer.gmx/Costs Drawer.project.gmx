@@ -678,8 +678,8 @@
     <sprite>sprites\spr_search</sprite>
     <sprite>sprites\spr_prev_tip</sprite>
     <sprite>sprites\spr_next_tip</sprite>
-    <sprite>sprites\spr_popup_confirm</sprite>
-    <sprite>sprites\spr_popup_cancel</sprite>
+    <sprite>sprites\spr_popup_save</sprite>
+    <sprite>sprites\spr_popup_close</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -1624,12 +1624,11 @@
       <object>objects\POPUP_BUTTON</object>
       <objects name="Default Items Editor">
         <object>objects\DEFAULT_ITEMS_EDITOR</object>
-        <object>objects\button_DEFAULT_ITEMS_EDIT_confirm</object>
-        <object>objects\button_DEFAULT_ITEMS_EDIT_cancel</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_done</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_save</object>
       </objects>
     </objects>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\OPENING_SCREEN</room>
     <room>rooms\WINDOW</room>

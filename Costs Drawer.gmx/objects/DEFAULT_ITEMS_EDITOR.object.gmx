@@ -57,15 +57,27 @@ headerDescriptionX      = (newValueColumnX / 2);
 headerNewValueX         = (newValueColumnX + ((defaultValueColumnX-newValueColumnX)/2));
 headerDefaultValueX     = (defaultValueColumnX + ((windowX2-defaultValueColumnX)/2));
 
+
 /// arrays
 arrayOfHighCourtItemValues       = global.arrayOfHighCourtItemValues;
 arrayOfHighCourtCustomItemValues = global.arrayOfHighCourtCustomItemValues;
 
 
-// buttons
-var footerButtonsY = ((footerY1 + (footerY2 - footerY1) /2) -12);
-confirmButton   = instance_create(headerNewValueX-40, footerButtonsY, button_DEFAULT_ITEMS_EDIT_confirm);
-cancelButton    = instance_create(headerDefaultValueX-40, footerButtonsY, button_DEFAULT_ITEMS_EDIT_cancel);
+/// Footer buttons calculations
+var targetSprite    = spr_popup_save;
+var footerMiddle    = round(footerY1 + (footerY2 - footerY1) /2);
+var halfWidth       = round(sprite_get_width(targetSprite)   /2);
+var halfHeight      = round(sprite_get_height(targetSprite)  /2);
+var footerButtonsY  = round(footerMiddle    - halfHeight);
+var footerButton1x  = (headerNewValueX      - halfWidth);
+var footerButton2x  = (headerDefaultValueX  - halfWidth);
+
+// instantiate buttons
+saveButton          = instance_create(footerButton1x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_save);
+closeButton         = instance_create(footerButton2x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_done);
+changesMade         = false;
+saveButton.visible  = false;
+closeButton.visible = true;
 </string>
           </argument>
         </arguments>
@@ -91,15 +103,101 @@ cancelButton    = instance_create(headerDefaultValueX-40, footerButtonsY, button
             <string>/// reset variables, and destroy buttons
 
 // destroy buttons
-if instance_exists(confirmButton)
- then instance_destroy(confirmButton);
+if instance_exists(saveButton)
+ then instance_destroy(saveButton);
  
-if instance_exists(cancelButton)
- then instance_destroy(cancelButton);
+if instance_exists(closeButton)
+ then instance_destroy(closeButton);
  
 // reset variables
 global.menuSelected = 0;
 global.popup        = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Save and hide "CONFIRM"
+show_message("Settings saved!");
+
+// save the item lists
+/* We'll do this by writing each default item array
+ * to a text file. The array order is super important,
+ * as each line will have to correspond to a hardcoded
+ * default item, since some items behave in very
+ * particular ways.
+ *
+ * The custom items will be done the same way and added
+ * to a separate file. The order here isn't important.
+*/
+// save_item_lists();
+
+
+// hide confirm button
+changesMade = false;
+saveButton.visible = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Try to close
+var ok = false;
+
+
+if (changesMade == false)
+{
+    ok = true;
+}
+else // changes have been made so we must ask the user if they mean to close
+{
+    if (show_question("Changes will NOT be saved. Cancel anyway?"))
+    {
+        ok = true;
+    }
+}
+
+
+// close
+if (ok == true)
+{
+    instance_destroy(self, true);
+}
+
 </string>
           </argument>
         </arguments>
@@ -246,6 +344,31 @@ draw_set_halign(fa_left);
 
 reset_text();
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="96">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// DEBUG change made
+changesMade = true;
+saveButton.visible = true;
 </string>
           </argument>
         </arguments>
