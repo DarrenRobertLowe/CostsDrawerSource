@@ -1,16 +1,19 @@
 /// APPENDIX_W_AND_OTHER_FEES()
 
-/* Default ttems array anatomy
- * global.arrayOfHighCourtItemValues[0,0] = "name / description"
- * global.arrayOfHighCourtItemValues[0,1] = default value;
- * global.arrayOfHighCourtItemValues[0,2] = custom value;
+/* Default items array anatomy
+ * global.arrayOfHighCourtItemValues[0,0] = "default description"
+ * global.arrayOfHighCourtItemValues[0,1] = "new description"
+ * global.arrayOfHighCourtItemValues[0,2] = default value;
+ * global.arrayOfHighCourtItemValues[0,3] = custom value;
 */
 global.arrayOfHighCourtItemValues[0,0] = "Attending Taxation";
-global.arrayOfHighCourtItemValues[0,1] = 12.56;
-global.arrayOfHighCourtItemValues[0,2] = 0;
+global.arrayOfHighCourtItemValues[0,1] = "";
+global.arrayOfHighCourtItemValues[0,2] = 12.56;
+global.arrayOfHighCourtItemValues[0,3] = 0;
 global.arrayOfHighCourtItemValues[1,0] = "Stamp On Summons To Tax";
-global.arrayOfHighCourtItemValues[1,1] = 270.00;
-global.arrayOfHighCourtItemValues[1,2] = 0;
+global.arrayOfHighCourtItemValues[1,1] = "";
+global.arrayOfHighCourtItemValues[1,2] = 270.00;
+global.arrayOfHighCourtItemValues[1,3] = 0;
 
 
 /* Custom items array anatomy
