@@ -5,7 +5,7 @@
  *  Converts argument0 into a string.
  *  Trims that string to two decimal places.
  *  Removes leading zeros.
- *  Groups digits with ",".
+ *  Groups digits with ",". (used to, we removed this feature)
 */
 
 var stringVal       = string(argument0);
@@ -74,18 +74,18 @@ else
     
     
     // Always have two decimal places
-    if decimalPoint == -1 {                                                 // if there's not even a decimal point
+    if (decimalPoint == -1) {                                                 // if there's not even a decimal point
         stringVal += ".00";                             
     }
     
-    if length - decimalPoint = 0 {                                          // if the last character is the decimal
+    if ((length - decimalPoint) == 0) {                                          // if the last character is the decimal
         stringVal += "00";               
     }
     
-    if length - decimalPoint = 1 {                                          // if there's only 1 decimal number after decimal point
+    if ((length - decimalPoint) == 1) {                                          // if there's only 1 decimal number after decimal point
         stringVal += "0";             
     }
-    if length - decimalPoint = 2 {                                          // if there's 2 decimal numbers
+    if ((length - decimalPoint) == 2) {                                          // if there's 2 decimal numbers
         stringVal += "";                               
     }
     decimalPoint = string_length(stringVal)-2;                              // set the new position of the decimalPoint var

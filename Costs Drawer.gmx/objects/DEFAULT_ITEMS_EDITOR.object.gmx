@@ -29,28 +29,40 @@
 /// arrays
 //arrayOfCircuitCourtItemValues       = global.arrayOfCircuitCourtItemValues;
 //arrayOfCircuitCourtCustomItemValues = global.arrayOfCircuitCourtCustomItemValues;
-arrayOfHighCourtItemValues       = global.arrayOfHighCourtItemValues;
-arrayOfHighCourtCustomItemValues = global.arrayOfHighCourtCustomItemValues;
+//arrayOfHighCourtItemValues       = global.arrayOfHighCourtItemValues;
+//hcDefaultArray = global.arrayOfHighCourtItemValues;
+rowHeight       = global.rowHeight;
+hcCustomArray = global.arrayOfHighCourtCustomItemValues;
 defDescIndex  = 0;
 newDescIndex  = 1;
 defValueIndex = 2;
 newValueIndex = 3;
-currentIndex  = 0; // used instead of var i;
+customDescriptionIndex  = 0;
+customOutlayIndex       = 1;
+customProfessionalIndex = 2;
+highlight_color = make_color_rgb(128,128,255);
+rowAlpha    = 0.3;
+
 // setup
-array         = arrayOfHighCourtItemValues; // base this on jurisdiction
+array         = hcCustomArray; //hcDefaultArray // base this on jurisdiction
 indexSelected = -1;
 fieldSelected = 0;
 descriptionFieldIndex   = 0;
 defaultValueFieldIndex  = 1;
 newValueFieldIndex      = 2;
+outlayValueFieldIndex   = 1;
+professionalValueFieldIndex = 2;
 lastField     = 2;
 size          = array_height_2d(array);
 lastIndex     = (size-1);
+maxItemsShowable = 29;//floor((700 / rowHeight));
+startingIndex = 0;
+//show_message("maxItemsShowable = "+string(maxItemsShowable));
 
 setup_clickTimer(); // for double-clicking checks
 
 
-rowHeight       = global.rowHeight;
+
 windowX1        = 10;
 windowX2        = 740;
 windowY1        = 10;
@@ -63,17 +75,21 @@ footerY2        = (windowY2 + footerHeight);
 quantumColumnWidth      = 120;
 defaultValueColumnX     = (windowX2 - quantumColumnWidth);
 newValueColumnX         = (defaultValueColumnX - quantumColumnWidth);
+professionalColumnX     = (windowX2 - quantumColumnWidth);
+outlayColumnX           = (professionalColumnX - quantumColumnWidth);
 descriptionColumnWidth  = (newValueColumnX - windowX1);
-
+descriptionColumnX      = windowX1;
 descriptionColumnEndX   = (newValueColumnX - quantumColumnWidth);
 
 
 margin = 5;
 defaultValueTextX       = ((defaultValueColumnX + quantumColumnWidth) - margin);
 newValueTextX           = ((newValueColumnX     + quantumColumnWidth) - margin);
+outlayTextX             = ((outlayColumnX + quantumColumnWidth) - margin);
+professionalTextX       = ((professionalColumnX + quantumColumnWidth) - margin);
+
 descriptionTextX        = (windowX1 + margin);
 descriptionTextWidth    = ((newValueColumnX - descriptionTextX) - margin);
-
 headerY                 = (windowY1 + rowHeight);        // the headers
 outlayProfessionalY     = (headerY + (rowHeight*1));     // where the "Outlay Prof." header text goes
 listStartY              = (headerY + (rowHeight*1));     // where the items start
@@ -87,6 +103,12 @@ headerDefaultValueX     = (defaultValueColumnX + ((windowX2-defaultValueColumnX)
 
 
 
+// REPOSITION CUSTOM HEADERS Y
+/* Because we don't have ability to edit default items yet
+ * we want to put the CUSTOM ITEMS Y to be that of the
+ * DEFAULT ITEMS Y for now
+*/
+customHeaderY = headerY;
 
 /// Footer buttons calculations
 var targetSprite    = spr_popup_save;
@@ -97,12 +119,14 @@ var footerButtonsY  = round(footerMiddle    - halfHeight);
 var footerButton1x  = (headerNewValueX      - halfWidth);
 var footerButton2x  = (headerDefaultValueX  - halfWidth);
 
+
 // instantiate buttons
 saveButton          = instance_create(footerButton1x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_save);
 closeButton         = instance_create(footerButton2x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_done);
 changesMade         = false;
 saveButton.visible  = false;
 closeButton.visible = true;
+default_items_editor_check_addRow();    // if the last item has any data, then add another line
 </string>
           </argument>
         </arguments>
@@ -137,6 +161,31 @@ if instance_exists(closeButton)
 // reset variables
 global.menuSelected = 0;
 global.popup        = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// make save button visible
+changesMade = true;
+saveButton.visible = true;
 </string>
           </argument>
         </arguments>
@@ -245,42 +294,17 @@ if (ok == true)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// draw and stuff
+            <string>/// draw and interact
 global.menuSelected = id;
 global.popup        = id;
 
-default_items_editor_draw_data();
+default_items_editor_logic();
 
 /// KEYBOARD CONTROLS
 default_items_keyboard_controls();
 
 // clean up
 reset_text();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="96">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// DEBUG change made
-changesMade = true;
-saveButton.visible = true;
 </string>
           </argument>
         </arguments>

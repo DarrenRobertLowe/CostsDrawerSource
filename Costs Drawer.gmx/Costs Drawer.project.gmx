@@ -687,6 +687,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\APPENDIX_W_AND_OTHER_FEES.gml</script>
+    <script>scripts\APPENDIX_W_AND_OTHER_FEES_custom.gml</script>
     <scripts name="START">
       <script>scripts\find_templates.gml</script>
       <script>scripts\opening_screen_recent_files.gml</script>
@@ -757,6 +758,11 @@
       <script>scripts\drawBorderOneLine.gml</script>
       <script>scripts\draw_set_font_scaled.gml</script>
       <script>scripts\draw_set_font_GUI_scaled.gml</script>
+    </scripts>
+    <scripts name="Mouse Click">
+      <script>scripts\setup_clickTimer.gml</script>
+      <script>scripts\double_clicked.gml</script>
+      <script>scripts\reset_clickTime.gml</script>
     </scripts>
     <scripts name="mouseOver scripts">
       <scripts name="item">
@@ -1197,12 +1203,15 @@
     <script>scripts\draw_GUI_dividers.gml</script>
     <script>scripts\split_item_at_char.gml</script>
     <script>scripts\reset_text_highlight.gml</script>
-    <script>scripts\default_items_editor_draw_data.gml</script>
-    <script>scripts\reset_clickTime.gml</script>
-    <script>scripts\double_clicked.gml</script>
-    <script>scripts\setup_clickTimer.gml</script>
-    <script>scripts\default_items_editor_edit_description.gml</script>
-    <script>scripts\default_items_keyboard_controls.gml</script>
+    <scripts name="POPUPS">
+      <scripts name="Default Items Editor">
+        <script>scripts\default_items_editor_logic.gml</script>
+        <script>scripts\default_items_keyboard_controls.gml</script>
+        <script>scripts\save_item_lists.gml</script>
+        <script>scripts\default_items_editor_check_addRow.gml</script>
+        <script>scripts\default_items_editor_getMaxItem.gml</script>
+      </scripts>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <fonts name="GUI">
