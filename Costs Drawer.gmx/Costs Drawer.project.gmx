@@ -678,8 +678,14 @@
     <sprite>sprites\spr_search</sprite>
     <sprite>sprites\spr_prev_tip</sprite>
     <sprite>sprites\spr_next_tip</sprite>
-    <sprite>sprites\spr_popup_save</sprite>
-    <sprite>sprites\spr_popup_close</sprite>
+    <sprites name="Item Editor Popup">
+      <sprite>sprites\spr_popup_save</sprite>
+      <sprite>sprites\spr_popup_close</sprite>
+      <sprite>sprites\spr_popup_add</sprite>
+      <sprite>sprites\spr_popup_delete</sprite>
+      <sprite>sprites\spr_popup_moveUp</sprite>
+      <sprite>sprites\spr_popup_moveDown</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -1205,11 +1211,13 @@
     <script>scripts\reset_text_highlight.gml</script>
     <scripts name="POPUPS">
       <scripts name="Default Items Editor">
-        <script>scripts\default_items_editor_logic.gml</script>
         <script>scripts\default_items_keyboard_controls.gml</script>
         <script>scripts\save_item_lists.gml</script>
         <script>scripts\default_items_editor_check_addRow.gml</script>
         <script>scripts\default_items_editor_getMaxItem.gml</script>
+        <script>scripts\default_items_editor_logic_customItems.gml</script>
+        <script>scripts\default_items_editor_logic_defaultItems.gml</script>
+        <script>scripts\default_items_editor_draw_popupWindow.gml</script>
       </scripts>
     </scripts>
   </scripts>
@@ -1641,6 +1649,8 @@
         <object>objects\DEFAULT_ITEMS_EDITOR</object>
         <object>objects\button_DEFAULT_ITEMS_EDIT_done</object>
         <object>objects\button_DEFAULT_ITEMS_EDIT_save</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_add</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_delete</object>
       </objects>
     </objects>
   </objects>

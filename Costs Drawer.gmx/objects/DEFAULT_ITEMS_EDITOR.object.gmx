@@ -31,7 +31,7 @@
 //arrayOfCircuitCourtCustomItemValues = global.arrayOfCircuitCourtCustomItemValues;
 //arrayOfHighCourtItemValues       = global.arrayOfHighCourtItemValues;
 //hcDefaultArray = global.arrayOfHighCourtItemValues;
-rowHeight       = global.rowHeight;
+rowHeight     = global.rowHeight;
 hcCustomArray = global.arrayOfHighCourtCustomItemValues;
 defDescIndex  = 0;
 newDescIndex  = 1;
@@ -45,6 +45,8 @@ rowAlpha    = 0.3;
 
 // setup
 array         = hcCustomArray; //hcDefaultArray // base this on jurisdiction
+copiedArrayPart1[0] = 0;    // used for deleting entries, etc.
+copiedArrayPart2[0] = 0;
 indexSelected = -1;
 fieldSelected = 0;
 descriptionFieldIndex   = 0;
@@ -123,6 +125,12 @@ var footerButton2x  = (headerDefaultValueX  - halfWidth);
 // instantiate buttons
 saveButton          = instance_create(footerButton1x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_save);
 closeButton         = instance_create(footerButton2x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_done);
+addButton           = instance_create(windowX1 + 10, footerButtonsY, button_DEFAULT_ITEMS_EDIT_add);
+deleteButton        = instance_create(windowX1 + 104, footerButtonsY, button_DEFAULT_ITEMS_EDIT_delete);
+//moveUpButton        = instance_create(windowX1 + 200, footerButtonsY, button_DEFAULT_ITEMS_EDIT_moveUp);
+//moveDownButton        = instance_create(windowX1 + 293, footerButtonsY, button_DEFAULT_ITEMS_EDIT_moveDown);
+
+
 changesMade         = false;
 saveButton.visible  = false;
 closeButton.visible = true;
@@ -161,6 +169,114 @@ if instance_exists(closeButton)
 // reset variables
 global.menuSelected = 0;
 global.popup        = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="14">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// delete item
+var desc     = array[indexSelected, 0];
+var question = ('Delete item: "'+ string(desc) +'"?');
+
+if (show_question(question))
+{
+    copiedArrayPart1[0] = 0;
+    copiedArrayPart2[0] = 0;
+    
+    var arrayEnd = array_height_2d(array);
+
+    //copiedArrayPart1
+    for (var i=0; i&lt;indexSelected; i++)
+    {
+        copiedArrayPart1[i,0] = array[i,0];
+        copiedArrayPart1[i,1] = array[i,1];
+        copiedArrayPart1[i,2] = array[i,2];
+    }
+    
+    
+    //copiedArrayPart2
+    var a = 0;
+    for (var i=indexSelected+1; i&lt;arrayEnd; i++)
+    {
+        copiedArrayPart2[a,0] = array[i,0];
+        copiedArrayPart2[a,1] = array[i,1];
+        copiedArrayPart2[a,2] = array[i,2];
+        a++;
+    }
+    
+    
+    // clear the array
+    array = 0;
+    array[0,0] = 0;
+    
+    var size1 = array_height_2d(copiedArrayPart1);
+    var size2 = array_height_2d(copiedArrayPart2);
+    
+    // refill the original array
+    var a = 0;
+    for (var i=0; i&lt;size1; i++)
+    {
+        array[i,0] = copiedArrayPart1[i,0];
+        array[i,1] = copiedArrayPart1[i,1];
+        array[i,2] = copiedArrayPart1[i,2];
+        a++;
+    }
+    
+    for (var i=0; i&lt;size2; i++)
+    {
+        array[a,0] = copiedArrayPart2[i,0];
+        array[a,1] = copiedArrayPart2[i,1];
+        array[a,2] = copiedArrayPart2[i,2];
+        a++;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// add an item
+
+var str   = get_string("Enter a description", "This is a new item");
+var index = (default_items_editor_getMaxItem());
+
+array[index, 0] = str;
+array[index, 1] = 0;
+array[index, 2] = 0;
 </string>
           </argument>
         </arguments>
@@ -294,11 +410,27 @@ if (ok == true)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// draw and interact
+            <string>/// draw popup window, data, and interact
 global.menuSelected = id;
 global.popup        = id;
 
-default_items_editor_logic();
+draw_set_font(font_GUI);
+
+
+// draw popup window
+default_items_editor_draw_popupWindow();
+
+/* TO DO:
+ * We'll need a scrollbar and scroll buttons.
+ *
+ * We want to trim the description if it's longer
+ * than the descriptionTextWidth.
+ * 
+ */
+ 
+default_items_editor_logic_defaultItems();  // default items
+default_items_editor_logic_customItems();   // custom items
+
 
 /// KEYBOARD CONTROLS
 default_items_keyboard_controls();
