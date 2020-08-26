@@ -104,6 +104,10 @@ global.attendingCourtSettlement = 20.47;
  * global.arrayOfHighCourtItemValues[0,1] = Outlay
  * global.arrayOfHighCourtItemValues[0,2] = Professional
 */
+
+
+global.arrayOfHighCourtCustomItemValues = 0;
+
 global.arrayOfHighCourtCustomItemValues[0,0] = "This is a custom item description and attending same";
 global.arrayOfHighCourtCustomItemValues[0,1] = 0;
 global.arrayOfHighCourtCustomItemValues[0,2] = 123.45;
@@ -212,7 +216,6 @@ global.arrayOfHighCourtCustomItemValues[33,2] = 0;
 global.arrayOfHighCourtCustomItemValues[34,0] = "Item 35";
 global.arrayOfHighCourtCustomItemValues[34,1] = 0;
 global.arrayOfHighCourtCustomItemValues[34,2] = 0;
-
 
 
 // CIRCUIT COURT

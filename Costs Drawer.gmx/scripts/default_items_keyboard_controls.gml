@@ -4,9 +4,7 @@ if keyboard_check_pressed(vk_up)
 {
     indexSelected--;
     indexSelected = max(0, indexSelected);
-    
-    if (indexSelected < startingIndex)
-    then startingIndex = indexSelected;
+    item_editor_view_follow_selectedIndex();
 }
 
 
@@ -15,8 +13,7 @@ if keyboard_check_pressed(vk_down)
     indexSelected++;
     indexSelected = min(lastIndex, indexSelected);
     
-    if (indexSelected >= (startingIndex + maxItemsShowable))
-    then startingIndex++;
+    item_editor_view_follow_selectedIndex();
 }
 
 
@@ -30,6 +27,13 @@ if keyboard_check_pressed(vk_right)
 {
     fieldSelected++;
     fieldSelected = min(lastField, fieldSelected);
+}
+
+
+
+if keyboard_check_pressed(vk_delete)
+{
+    event_user(4);
 }
 
 

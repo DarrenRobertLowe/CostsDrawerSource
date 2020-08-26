@@ -1213,11 +1213,13 @@
       <scripts name="Default Items Editor">
         <script>scripts\default_items_keyboard_controls.gml</script>
         <script>scripts\save_item_lists.gml</script>
-        <script>scripts\default_items_editor_check_addRow.gml</script>
         <script>scripts\default_items_editor_getMaxItem.gml</script>
         <script>scripts\default_items_editor_logic_customItems.gml</script>
         <script>scripts\default_items_editor_logic_defaultItems.gml</script>
         <script>scripts\default_items_editor_draw_popupWindow.gml</script>
+        <script>scripts\default_items_array_swap.gml</script>
+        <script>scripts\constrain_item_editor_scrolling.gml</script>
+        <script>scripts\item_editor_view_follow_selectedIndex.gml</script>
       </scripts>
     </scripts>
   </scripts>
@@ -1651,6 +1653,8 @@
         <object>objects\button_DEFAULT_ITEMS_EDIT_save</object>
         <object>objects\button_DEFAULT_ITEMS_EDIT_add</object>
         <object>objects\button_DEFAULT_ITEMS_EDIT_delete</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_moveUp</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_moveDown</object>
       </objects>
     </objects>
   </objects>
