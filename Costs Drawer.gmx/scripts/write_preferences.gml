@@ -12,19 +12,7 @@ if !(file_exists(fileName))
 if ( file_exists(fileName) )
 {
     ini_open(fileName);
-    /*
-    var section = "SESSION";
-    var key = "";
-    var value = 0;
-    
-    ini_write_real( section, 'height', window_get_height() );
-    ini_write_real( section, 'width',  window_get_width() );
-    ini_write_real( section, 'winX',   window_get_x() );
-    ini_write_real( section, 'winY',   window_get_y() );
-    ini_write_real( section, 'right_column_x',   right_column_x );
-    ini_write_real( section, 'tip',   global.currentTip );
-    */
-    
+
     var section = "PREFERENCES";
     var key = "";
     var value = 0;

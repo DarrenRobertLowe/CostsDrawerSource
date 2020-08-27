@@ -439,6 +439,9 @@ old_guiScale = 0;
 get_divider_values();
 
 
+// LOAD CUSTOM ITEM VALUES
+load_customItems();
+
 // OPEN A FILE? CAUSES CRASH!
 /*
 if (global.commandline_argument != "")

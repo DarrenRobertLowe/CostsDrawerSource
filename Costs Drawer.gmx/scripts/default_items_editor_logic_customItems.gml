@@ -1,10 +1,9 @@
 ///default_items_editor_logic_customItems();
-var y1      = windowY1;
-var y2      = windowY2;
-maxItemVisible     = default_items_editor_getMaxItem();
-//lastIndex   = (maxItemVisible - 1);
-size          = array_height_2d(array);
-lastIndex     = (size-1);
+var y1          = windowY1;
+var y2          = windowY2;
+maxItemVisible   = default_items_editor_getMaxItem();
+size            = array_height_2d(array);
+lastIndex       = (size-1);
 
 
 if (lastIndex > -1)
@@ -63,21 +62,7 @@ if (lastIndex > -1)
                 {
                     if (double_clicked())
                     {
-                        // get the new description
-                        var preStr  = description;
-                        var str     = get_string("Enter a description:", description);
-                        
-                        if (str != "")
-                        {
-                            // set the value
-                            if (str != description)
-                            {
-                                description = str;
-                                hcCustomArray[i, customDescriptionIndex] = description;
-                                array = hcCustomArray;
-                                event_user(2);  // tell Save Button to become visible/clickable
-                            }
-                        }
+                        items_editor_edit_description(description, i);
                     }
                     else reset_clickTime();
                 }
@@ -96,17 +81,7 @@ if (lastIndex > -1)
             if  (indexSelected == i)
             and (fieldSelected == descriptionFieldIndex)
             {
-                // get the new description
-                var preStr  = description;
-                var str     = get_string("Enter a description:", description);
-                
-                if (str != description)
-                {
-                    description = str;
-                    hcCustomArray[i, customDescriptionIndex] = description;
-                    array = hcCustomArray;
-                    event_user(2); // tell Save Button to become visible/clickable
-                }
+                items_editor_edit_description(description, i);
             }
         }
         
@@ -165,24 +140,7 @@ if (lastIndex > -1)
                     {
                         if (double_clicked())
                         {
-                            // get the new description
-                            var preStr  = string(outlay);
-                            var str     = get_string("Enter value for Outlay:", outlay);
-                            
-                            if (str != "")
-                            {
-                                var enteredValue = formatQuantum(str);
-                                
-                                // set the value
-                                enteredValue = real(enteredValue);
-                                if (enteredValue != outlay)
-                                {
-                                    outlay = real(enteredValue);
-                                    hcCustomArray[i, outlayValueFieldIndex] = outlay;
-                                    array = hcCustomArray;
-                                    event_user(2); // tell Save Button to become visible/clickable
-                                }
-                            }
+                            items_editor_edit_outlay(outlay, i);
                         }
                         else reset_clickTime();
                     }
@@ -199,24 +157,7 @@ if (lastIndex > -1)
                 if  (indexSelected == i)
                 and (fieldSelected = outlayValueFieldIndex)
                 {
-                    // get the new description
-                    var preStr  = string(outlay);
-                    var str     = get_string("Enter value for Outlay:", outlay);
-                    
-                    if (str != "")
-                    {
-                        var enteredValue = formatQuantum(str);
-                        
-                        // set the value
-                        enteredValue = real(enteredValue);
-                        if (enteredValue != outlay)
-                        {
-                            outlay = real(enteredValue);
-                            hcCustomArray[i, outlayValueFieldIndex] = outlay;
-                            array = hcCustomArray;
-                            event_user(2); // tell Save Button to become visible/clickable
-                        }
-                    }
+                    items_editor_edit_outlay(outlay, i);
                 }
             }
             
@@ -271,24 +212,7 @@ if (lastIndex > -1)
                     {
                         if (double_clicked())
                         {
-                            // get the new description
-                            var preStr          = string(professional);
-                            var str             = get_string("Enter value for Professional:", professional);
-                            
-                            if (str != "")
-                            {    
-                                var enteredValue    = formatQuantum(str);
-                                
-                                // set the value
-                                enteredValue = real(enteredValue);
-                                if (enteredValue != professional)
-                                {
-                                    professional = enteredValue;
-                                    hcCustomArray[i, professionalValueFieldIndex] = professional;
-                                    array = hcCustomArray;
-                                    event_user(2); // tell Save Button to become visible/clickable
-                                }
-                            }
+                            items_editor_edit_professional(professional, i);
                         }
                         else reset_clickTime();
                     }
@@ -305,24 +229,7 @@ if (lastIndex > -1)
                 if  (indexSelected == i)
                 and (fieldSelected = professionalValueFieldIndex)
                 {
-                    // get the new description
-                    var preStr          = string(professional);
-                    var str             = get_string("Enter value for Professional:", professional);
-                    
-                    if (str != "")
-                    {    
-                        var enteredValue    = formatQuantum(str);
-                        
-                        // set the value
-                        enteredValue = real(enteredValue);
-                        if (enteredValue != professional)
-                        {
-                            professional = enteredValue;
-                            hcCustomArray[i, professionalValueFieldIndex] = professional;
-                            array = hcCustomArray;
-                            event_user(2); // tell Save Button to become visible/clickable
-                        }
-                    }
+                    items_editor_edit_professional(professional, i);
                 }
             }
             

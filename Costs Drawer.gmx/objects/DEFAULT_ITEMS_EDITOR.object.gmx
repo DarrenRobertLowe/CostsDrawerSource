@@ -26,29 +26,27 @@
           <argument>
             <kind>1</kind>
             <string>/// setup positions and spawn buttons
-/// arrays
-//arrayOfCircuitCourtItemValues       = global.arrayOfCircuitCourtItemValues;
-//arrayOfCircuitCourtCustomItemValues = global.arrayOfCircuitCourtCustomItemValues;
-//arrayOfHighCourtItemValues       = global.arrayOfHighCourtItemValues;
-//hcDefaultArray = global.arrayOfHighCourtItemValues;
 rowHeight     = global.rowHeight;
-hcCustomArray = global.arrayOfHighCourtCustomItemValues;
-defDescIndex  = 0;
-newDescIndex  = 1;
-defValueIndex = 2;
-newValueIndex = 3;
+
+// initialize
+defDescIndex    = 0;
+newDescIndex    = 1;
+defValueIndex   = 2;
+newValueIndex   = 3;
 customDescriptionIndex  = 0;
 customOutlayIndex       = 1;
 customProfessionalIndex = 2;
 highlight_color = make_color_rgb(128,128,255);
-rowAlpha    = 0.3;
+rowAlpha        = 0.3;
+
 
 // setup
-array         = hcCustomArray;  // hcDefaultArray // base this on jurisdiction
-copiedArrayPart1[0] = 0;        // used for deleting entries, etc.
-copiedArrayPart2[0] = 0;
-indexSelected = -1;
-fieldSelected = 0;
+array                   = 0;    // used for custom items
+defaultItemsArray       = 0;    // will be used for default items
+copiedArrayPart1[0]     = 0;    // used for deleting entries, etc.
+copiedArrayPart2[0]     = 0;
+indexSelected           = -1;
+fieldSelected           = 0;
 descriptionFieldIndex   = 0;
 defaultValueFieldIndex  = 1;
 newValueFieldIndex      = 2;
@@ -57,7 +55,7 @@ professionalValueFieldIndex = 2;
 lastField     = 2;
 size          = array_height_2d(array);
 lastIndex     = (size-1);
-maxItemsShowable = 29;//floor((700 / rowHeight));
+maxItemsShowable = 29;          // floor((700 / rowHeight));
 startingIndex = 0;
 //show_message("maxItemsShowable = "+string(maxItemsShowable));
 
@@ -166,6 +164,19 @@ if instance_exists(saveButton)
  
 if instance_exists(closeButton)
  then instance_destroy(closeButton);
+ 
+if instance_exists(addButton)
+ then instance_destroy(addButton);
+ 
+if instance_exists(deleteButton)
+ then instance_destroy(deleteButton);
+
+if instance_exists(moveUpButton)
+ then instance_destroy(moveUpButton);
+
+if instance_exists(moveDownButton)
+ then instance_destroy(moveDownButton);
+ 
  
 // reset variables
 global.menuSelected = 0;
@@ -425,12 +436,25 @@ show_message("Settings saved!");
  * The custom items will be done the same way and added
  * to a separate file. The order here isn't important.
 */
-// save_item_lists();
 
 
 // hide confirm button
 changesMade = false;
-saveButton.visible = false;
+
+
+// write to the list of items
+if (global.BILL_COURT = "Highcourt")
+  then global.arrayOfHighCourtCustomItemValues = array;
+
+if (global.BILL_COURT = "Circuit")
+  then global.arrayOfCicruitCourtCustomItemValues = array;
+;
+// save_item_lists();
+// save_defaultItems();
+save_customItems();
+
+
+saveButton.visible  = false;
 </string>
           </argument>
         </arguments>
@@ -516,8 +540,8 @@ default_items_editor_draw_popupWindow();
  * 
  */
  
-//default_items_editor_logic_defaultItems();  // default items
-default_items_editor_logic_customItems();   // custom items
+//default_items_editor_logic_defaultItems();    // default items
+default_items_editor_logic_customItems();       // custom items
 
 
 /// KEYBOARD CONTROLS

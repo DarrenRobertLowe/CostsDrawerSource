@@ -1220,8 +1220,15 @@
         <script>scripts\default_items_array_swap.gml</script>
         <script>scripts\constrain_item_editor_scrolling.gml</script>
         <script>scripts\item_editor_view_follow_selectedIndex.gml</script>
+        <script>scripts\items_editor_edit_description.gml</script>
+        <script>scripts\items_editor_edit_outlay.gml</script>
+        <script>scripts\items_editor_edit_professional.gml</script>
       </scripts>
     </scripts>
+    <script>scripts\save_customItems.gml</script>
+    <script>scripts\load_customItems.gml</script>
+    <script>scripts\load_customItems_getVal.gml</script>
+    <script>scripts\load_customItems_getDescription.gml</script>
   </scripts>
   <fonts name="fonts">
     <fonts name="GUI">
