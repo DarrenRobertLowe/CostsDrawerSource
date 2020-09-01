@@ -28,30 +28,31 @@ and (array != -1)
     {
         file = file_text_open_read(fileName);
         
-            var str  = "";
+            var str = "";
+            var i   = 0;
             
             while !(file_text_eof(file))
             {
-                var line = file_text_read_string(file);
-                
+                line = file_text_read_string(file);
                 
                 // DESCRIPTION
-                load_customItems_getDescription();
+                array[i,0] = load_customItems_getDescription();
                 
                 // OUTLAY
                 val = load_customItems_getVal();
                 if (val == -1)
                   then exit;
-                  else array[0,1] = val;
+                  else array[i,1] = val;
                 
                 // PROFESSIONAL
                 val = load_customItems_getVal();
                 if (val == -1)
                   then exit;
-                  else array[0,2] = val;
+                  else array[i,2] = val;
                 
                 // NEXT LINE
                 file_text_readln(file);
+                i++;
             }
         
         

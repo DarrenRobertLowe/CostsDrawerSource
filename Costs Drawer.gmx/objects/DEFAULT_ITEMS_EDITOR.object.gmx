@@ -41,7 +41,12 @@ rowAlpha        = 0.3;
 
 
 // setup
-array                   = 0;    // used for custom items
+array = 0;    // used for custom items
+if (global.BILL_COURT == "Circuit")
+  then array = global.arrayOfCicruitCourtCustomItemValues;
+  else array = global.arrayOfHighCourtCustomItemValues;
+
+
 defaultItemsArray       = 0;    // will be used for default items
 copiedArrayPart1[0]     = 0;    // used for deleting entries, etc.
 copiedArrayPart2[0]     = 0;
@@ -52,11 +57,11 @@ defaultValueFieldIndex  = 1;
 newValueFieldIndex      = 2;
 outlayValueFieldIndex   = 1;
 professionalValueFieldIndex = 2;
-lastField     = 2;
-size          = array_height_2d(array);
-lastIndex     = (size-1);
-maxItemsShowable = 29;          // floor((700 / rowHeight));
-startingIndex = 0;
+lastField               = 2;
+size                    = array_height_2d(array);
+lastIndex               = (size-1);
+maxItemsShowable        = 29;          // floor((700 / rowHeight));
+startingIndex           = 0;
 //show_message("maxItemsShowable = "+string(maxItemsShowable));
 
 setup_clickTimer(); // for double-clicking checks

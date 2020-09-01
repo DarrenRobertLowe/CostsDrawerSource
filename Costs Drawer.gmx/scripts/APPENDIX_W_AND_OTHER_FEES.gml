@@ -249,3 +249,10 @@ global.CC_stampOnSummonsToTax = 70.00;
 global.CC_stampOnCertificate = 70.00;
 global.CC_drawingCostsAndCopy = 38.00;
 
+
+
+
+
+
+
+

@@ -12,10 +12,9 @@ if (str != "")
     var enteredValue = formatQuantum(str);
     
     // set the value
-    enteredValue = real(enteredValue);
     if (enteredValue != outlay)
     {
-        outlay = real(enteredValue);
+        outlay = enteredValue;
         array[index, outlayValueFieldIndex] = outlay;
         customItemsArray = array;
         event_user(2); // tell Save Button to become visible/clickable

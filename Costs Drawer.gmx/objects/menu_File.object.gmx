@@ -44,10 +44,10 @@ title = "File";
 
 
 // sub menus
-newMenu             = ds_list_create();
+newMenu                 = ds_list_create();
     circuitCourtMenu    = ds_list_create();
     highCourtMenu       = ds_list_create();
-recentMenu          = MASTER.recentFiles;
+recentMenu              = MASTER.recentFiles;
 
 
 // File

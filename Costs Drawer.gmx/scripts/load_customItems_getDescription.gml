@@ -1,18 +1,19 @@
 /// load_customItems_getDescription()
 
 // find up to the ;
-var pos = string_pos(";", line)
+var pos = string_pos("^", line)
 
 // escape if there's a problem
 if (pos == 0)
 {
-    show_message("ERROR loading custom items!");
-    exit;
+    write_log("ERROR loading custom items! Could not find separator char for description!");
+    return "";
 }
 
 // add description to array
-str  = string_copy(line,0,pos);
-array[0,0] = str;
+var desc = string_copy(line, 0, pos-1);
 
 // delete the description from the line
-line = string_delete(line,0,pos);
+line = string_copy(line, pos+1, string_length(line));
+
+return desc;

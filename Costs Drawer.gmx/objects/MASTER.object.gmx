@@ -84,6 +84,8 @@ global.BILL_TYPE    = "Party and Party";            // e.g. Pary and Party, Soli
 global.recordNumber = "";
 global.VATamount    = 0.23;
 
+
+
 global.DICTIONARY           = ds_list_create();
 global.DEFAULT_DICTIONARY   = ds_list_create();
 global.USER_DICTIONARY      = ds_list_create();
@@ -176,9 +178,6 @@ backupTimer                 = 0;                // used for automatically saving
 global.allowBackup          = false;
 global.TIMER                = 0;
 
-
-
-global.popup                = 0;
 
 /* FILE MENU */
 global.menuItemIndent       = 16;
@@ -439,8 +438,7 @@ old_guiScale = 0;
 get_divider_values();
 
 
-// LOAD CUSTOM ITEM VALUES
-load_customItems();
+
 
 // OPEN A FILE? CAUSES CRASH!
 /*
@@ -764,7 +762,6 @@ if  (BILL_STARTED == false)
     ///reset debug
     debug_fps = 0;
     debug_fps_poll_count = 0;
-    
     }
 }
 </string>
@@ -791,7 +788,7 @@ if  (BILL_STARTED == false)
 if (global.RESTARTING == false)
 {
     global.fileToOpen = "";
-    global.popup = -1;
+    global.popup      = 0;
     
     if !exists(global.selected) then global.selected = -1 // fixes so many potential problems
     

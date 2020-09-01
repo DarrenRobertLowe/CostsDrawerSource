@@ -9,6 +9,7 @@ var str     = get_string("Enter a description:", description);
 
 if (str != "")
 {
+    str = text_remove_special_characters(str);
     // set the value
     if (str != description)
     {

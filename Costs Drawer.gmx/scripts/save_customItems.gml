@@ -37,15 +37,15 @@ and (array != -1)
             {
                 var description = array[i, 0];
                 file_text_write_string(file, description);
-                file_text_write_string(file, ";");
+                file_text_write_string(file, "^");
 
                 var outlay      = array[i, 1];
-                file_text_write_real(file, outlay);
-                file_text_write_string(file, ";");
+                file_text_write_string(file, outlay);
+                file_text_write_string(file, "^");
                 
                 var professional = array[i, 2];
-                file_text_write_real(file, professional);
-                file_text_write_string(file, ";");
+                file_text_write_string(file, professional);
+                file_text_write_string(file, "^");
                 
                 file_text_writeln(file);
             }

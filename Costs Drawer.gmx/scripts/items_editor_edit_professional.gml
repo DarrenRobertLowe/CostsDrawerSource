@@ -2,17 +2,16 @@
 
 // get the new professional
 var professional = argument0;
-var index  = argument1;
+var index        = argument1;
 
 var preStr          = string(professional);
 var str             = get_string("Enter value for Professional:", professional);
 
 if (str != "")
 {    
-    var enteredValue    = formatQuantum(str);
+    var enteredValue = formatQuantum(str);
     
     // set the value
-    enteredValue = real(enteredValue);
     if (enteredValue != professional)
     {
         professional = enteredValue;

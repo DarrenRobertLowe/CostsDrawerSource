@@ -1,8 +1,4 @@
 // SETUP FIRST PAGE
-if !instance_exists(DEFAULT_ITEMS_EDITOR){
-    instance_create(0,0,DEFAULT_ITEMS_EDITOR);
-}
-
 show_debug_message("running create_first_page()");
 
 if !ds_exists(global.listOfItems,ds_type_list)
