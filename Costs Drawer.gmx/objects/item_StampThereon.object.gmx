@@ -68,10 +68,13 @@ updateLines(shownDescriptionList);
             <kind>1</kind>
             <string>/// CREATE EVENT
 master = find_ID(masterID);            // set master = instance number
-master.myStamp = id;
 
-blockParent = master;
-ds_list_add(master.blockChildList,id);
+if( exists(master) )
+{
+    master.myStamp = id;
+    blockParent = master;
+    ds_list_add(master.blockChildList, id);
+}
 </string>
           </argument>
         </arguments>

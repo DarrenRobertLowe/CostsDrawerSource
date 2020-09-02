@@ -46,7 +46,7 @@ ds_list_add(list,"Brief For Counsel To Attend for Hearing Date");
 ds_list_add(list,"Attending Court when hearing date obtained...");
 ds_list_add(list,"Schedule of Witnesses (2)");
 ds_list_add(list,"Preparation of Brief For Trial inlcuding books of pleadings");
-ds_list_add(list,"Preparation of brief for junior counsel with copies documents");
+ds_list_add(list,"Preparation of brief for counsel with copies documents");
 ds_list_add(list,"Brief for counsel for Trial of Action");
 ds_list_add(list,"Solicitors Mileage");
 ds_list_add(list,"Attending Consultation Prior to Hearing");

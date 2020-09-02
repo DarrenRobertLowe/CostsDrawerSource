@@ -324,14 +324,19 @@ if (global.BILL_COURT == "Highcourt")
         }
     }
     
+    if (item == "Preparation of brief for counsel with copies documents")
+    {
+        if !(instance_exists(item_preparationOfBriefForCounselWithDocuments))
+        {   
+            newItem = insert_item(item_preparationOfBriefForCounselWithDocuments,pos+1)
+        }
+    }
+    
     
     
     if (item == "Fee on updated Particulars of Injury")
     {
-        if !(instance_exists(item_feeOnUpdatedParticularsOfPersonalInjury))
-        {   
-            newItem = insert_item(item_feeOnUpdatedParticularsOfPersonalInjury,pos+1)
-        }
+        newItem = insert_item(item_feeOnUpdatedParticularsOfPersonalInjury,pos+1)
     }
     
     if (item == "Brief For Counsel To Attend for Hearing Date")
@@ -480,6 +485,7 @@ if (global.BILL_COURT == "Highcourt")
     }
     
     
+
     // Fee on Replies to Notice for Further Information
     if (item == "Fee on Replies to Notice for Further Information")
     {
@@ -881,6 +887,14 @@ if (global.BILL_COURT == "Circuit")
     if (item == "Fee on Replies to Notice for Particulars")
     {
         newItem = insert_item(item_CC_feeOnRepliesToNoticeForParticulars,pos+1)
+    }
+    
+    
+    // Notification of Motion for Judgement
+    if (item == "Notification of Motion for Judgement")
+    {
+        if !(instance_exists(item_CC_notificationOfMotionForJudgement))
+        then newItem = insert_item(item_CC_notificationOfMotionForJudgement,pos+1)
     }
     
     
