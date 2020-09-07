@@ -31,7 +31,7 @@ delayBeforeButtonRepeat         = -1;
 
 
 doubleClickTime  = global.doubleClickTime;
-doubleClickTimer = 0;//doubleClickTime;
+doubleClickTimer = 0;
 
 depth = -2100;
 </string>

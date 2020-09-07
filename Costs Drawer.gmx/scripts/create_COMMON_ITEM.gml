@@ -66,9 +66,12 @@ if (item == "Add Instructions Fee Item")
 }
 
 
-if (item == "Notation of Appearance")
-{
-    newItem = insert_item(item_plaintiff_notationOfAppearance,pos+1)
+if !(instance_exists(item_plaintiff_notationOfAppearance))
+{   
+    if (item == "Notation of Appearance")
+    {
+        newItem = insert_item(item_plaintiff_notationOfAppearance,pos+1)
+    }
 }
 
 

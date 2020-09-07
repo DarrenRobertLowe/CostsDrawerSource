@@ -67,6 +67,17 @@ if (instance_exists(item))
     ds_list_delete(list,pos);
 }
 
+
+var item = item_plaintiff_notationOfAppearance;
+if (instance_exists(item))
+{
+    var pos = ds_list_find_index(list,"Notation of Appearance");
+    ds_list_delete(list,pos);
+}
+
+
+
+
 var item = item_feeOnRepliesToNoticeForParticulars;
 if (instance_exists(item))
 {
@@ -266,6 +277,16 @@ if (instance_exists(item))
     var pos = ds_list_find_index(list,"Attending Consultation Prior to Hearing");
     ds_list_delete(list,pos);
 }
+
+var item = item_preparationOfBriefForTrialOfAction;
+if (instance_exists(item))
+{
+    var pos = ds_list_find_index(list,"Brief for counsel for Trial of Action");
+    ds_list_delete(list,pos);
+}
+
+
+
 
 var item = item_paidLawSocietyForConsultationRooms;
 if (instance_exists(item))

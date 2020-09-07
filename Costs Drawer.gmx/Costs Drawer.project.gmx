@@ -1194,6 +1194,7 @@
     <script>scripts\draw_GUI_dividers.gml</script>
     <script>scripts\split_item_at_char.gml</script>
     <script>scripts\reset_text_highlight.gml</script>
+    <script>scripts\update_right_column_content.gml</script>
   </scripts>
   <fonts name="fonts">
     <fonts name="GUI">

@@ -755,10 +755,11 @@ if  (BILL_STARTED == false)
     
     refresh_right_column();
     
+    update_right_column_content();
+    
     ///reset debug
     debug_fps = 0;
     debug_fps_poll_count = 0;
-    
     }
 }
 </string>
