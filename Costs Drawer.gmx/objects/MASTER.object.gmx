@@ -83,6 +83,8 @@ global.BILL_COURT   = "";                           // bill jurisdiction : "Circ
 global.BILL_TYPE    = "Party and Party";            // e.g. Pary and Party, Solicitor and Client, etc.
 global.recordNumber = "";
 global.VATamount    = 0.23;
+global.vatAmount1   = 0.23;
+global.vatAmount2   = 0.21;
 
 global.DICTIONARY           = ds_list_create();
 global.DEFAULT_DICTIONARY   = ds_list_create();

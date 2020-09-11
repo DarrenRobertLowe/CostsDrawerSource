@@ -228,6 +228,92 @@ if in_view()
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// UPDATE TOTALS
+
+if (pageNumber &gt; 1)
+{
+    /* CALCULATE Totals */
+    totalOutlay = 0;                                                // where we'll store the total totalOutlay thus far
+    totalProfessional = 0;                                          // where we'll store the total totalProfessional thus far
+    showTotals          = true; // by default
+    
+    // CREATE A COMBINED LIST OF ITEMS
+    
+    ds_list_clear(combinedList);
+    ds_list_clear(list2);
+    
+    ds_list_copy(combinedList,global.listOfItems);
+    ds_list_copy(list2,global.LAST_PAGE_ITEMS);
+    
+    /*
+    // add list 2's contents to the end of combinedList...
+    var size = ds_list_size(list2);
+    for(var i=0; i&lt;size; i++)
+    {
+        var item = ds_list_find_value(list2,i);
+        ds_list_add(combinedList,item);
+    }
+    reorder_list(combinedList);                                     // reorder by row number
+    */
+    
+    
+    var index           = ds_list_find_index(combinedList,id);      // find our position on the list
+    var lastTots        = lastPage_TOTAL.id
+    var finalTotalsPos  = ds_list_find_index(combinedList,lastTots)
+    
+    if (row &gt; lastPage_TOTAL.row)
+    //if (finalTotalsPos &lt; index)                                     // if we're after the last totals...
+    {
+        //showTotals  = false;                                        // DO NOT draw carry-over totals.
+        totalOutlay = 0;
+        totalProfessional = 0;
+        outlayText  = "";
+        professionalText = "";
+    }
+    else                                                            // if we're before the last totals...
+    {
+        showTotals  = true;                                         // draw carry-over totals.
+        
+        var list    = global.listOfItems;                           // the list
+        
+        var ourPos  = ds_list_find_index(list,id);                  // our position on the global.listOfItems
+        var tots    = ds_list_find_value(list,ourPos-1);            // the TOTALS before us
+        var name    = object_get_name(tots.object_index);
+        
+        if (name == "TOTALS")
+        {
+            totalOutlay         = tots.totalOutlay;                 // outlay
+            totalProfessional   = tots.totalProfessional;           // professional
+            outlayText          = formatQuantum(totalOutlay);       // used when exporting to xlsx
+            professionalText    = formatQuantum(totalProfessional); // used when exporting to xlsx
+        }
+    }
+}
+
+seeFeeLater = false;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>

@@ -111,14 +111,14 @@ ds_list_add(blockList,id);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// CALCULATE Totals 
-professional     = (lastPage_SUBTOTAL.totalProfessional * 0.23)
+            <string>/// CALCULATE 
+professional     = (lastPage_SUBTOTAL.totalProfessional * global.VATamount);//0.23)
 professionalText = formatQuantum(professional);
-    
+
 
 /// FIND ROW and DRAW THE DATA    
 lines = 1;
-if in_view()
+if ( in_view() )
 {
     //row = (lastPage_SUBTOTAL.row + lastPage_SUBTOTAL.lines);
     reset_text();
@@ -137,6 +137,7 @@ if in_view()
         ds_list_find_value(descriptionList,0)                   // see create event for text
         );
     reset_text();
+    
     
     // DRAW totalProfessional
     draw_set_halign(fa_right);

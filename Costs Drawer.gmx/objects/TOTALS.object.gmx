@@ -128,7 +128,8 @@ with (TOTALS)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_user(0);
+            <string>/// call update totals (event 0)
+event_user(0);
 </string>
           </argument>
         </arguments>
@@ -257,7 +258,8 @@ if ( instance_exists(PAGE_NUMBER) )
 {
     with(PAGE_NUMBER)
     {
-        alarm[0] = 1;                                       // update the TOTALS amounts
+        event_user(0);
+        //alarm[0] = 1;                                       // update the TOTALS amounts
     }
 }
 

@@ -678,6 +678,7 @@
     <sprite>sprites\spr_search</sprite>
     <sprite>sprites\spr_prev_tip</sprite>
     <sprite>sprites\spr_next_tip</sprite>
+    <sprite>sprites\spr_vatSwitch</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -1195,6 +1196,10 @@
     <script>scripts\split_item_at_char.gml</script>
     <script>scripts\reset_text_highlight.gml</script>
     <script>scripts\update_right_column_content.gml</script>
+    <script>scripts\switch_vat_amount.gml</script>
+    <script>scripts\update_vat_descriptions.gml</script>
+    <script>scripts\update_vat_quantum.gml</script>
+    <script>scripts\update_entire_document.gml</script>
   </scripts>
   <fonts name="fonts">
     <fonts name="GUI">
@@ -1406,6 +1411,7 @@
       <object>objects\keyboard_CURSOR</object>
       <object>objects\button_search_prev</object>
       <object>objects\button_search_next</object>
+      <object>objects\button_vatSwitch</object>
       <object>objects\button_plaintiff_defendant_switch</object>
     </objects>
     <objects name="SET ITEMS">
@@ -1616,6 +1622,7 @@
     <object>objects\PROGRESS_BAR</object>
     <object>objects\TIPS</object>
     <object>objects\SEARCH_TEXT</object>
+    <object>objects\VAT_CHANGER</object>
     <object>objects\SEARCH_HIGHLIGHTER</object>
     <object>objects\STARTUP_LOGGER</object>
   </objects>
