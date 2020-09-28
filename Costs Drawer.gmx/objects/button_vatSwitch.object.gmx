@@ -60,23 +60,6 @@ x = (view_xview[0] + startX);
 y = (view_yview[0] + startY);
 draw_self_round();
 
-/*
-    y = (view_yview[0] + startY);
-    
-    var scale = global.GUI_SCALE;
-    //image_xscale = scale;
-    //image_yscale = scale;
-    
-    if ( scale == 1.5 )
-      then sprite_index = spr_xlsx_export_150;
-      else sprite_index = spr_xlsx_export;
-      
-      
-    scaleX = 0;
-    if ( scale == 1.5 ) then scaleX = 35;//(scale * GUI_SCALE_X_MULTIPLIER);
-    
-    x = (view_xview[0] + startX + scaleX);
-    */
 
 if  (global.MOUSE_FREE = true)
 and (global.menuSelected == 0)
@@ -95,20 +78,7 @@ and (mouseOverArea(guiX, startY, guiX+17, startY+17))
     // MOUSE CLICK
     if ( mouse_check_button_pressed(mb_left) )
     {
-        if (global.VATamount == global.vatAmount1)
-        { 
-            if (show_question("Change VAT to "+string(global.vatAmount2 * 100) +"% accross the whole document?"))
-            {
-                switch_vat_amount();
-            }
-        }
-        else
-        {
-            if (show_question("Change VAT to "+string(global.vatAmount1 * 100) +"% accross the whole document?"))
-            {
-                switch_vat_amount();
-            }
-        }
+        ask_switch_vat_amount();
     }
 }
 else image_index = 0;

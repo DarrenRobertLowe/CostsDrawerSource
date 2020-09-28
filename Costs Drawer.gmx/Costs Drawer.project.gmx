@@ -1200,6 +1200,7 @@
     <script>scripts\update_vat_descriptions.gml</script>
     <script>scripts\update_vat_quantum.gml</script>
     <script>scripts\update_entire_document.gml</script>
+    <script>scripts\ask_switch_vat_amount.gml</script>
   </scripts>
   <fonts name="fonts">
     <fonts name="GUI">

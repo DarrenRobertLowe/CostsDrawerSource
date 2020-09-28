@@ -17,7 +17,7 @@ if (size > 0)
     var xx              = (x1 + (global.estimatedCharacterWidth) );
     var scrollAreaWidth = ( (x2-xx) - (global.estimatedCharacterWidth) );
     var areaHeight      = (y2-y1);
-    var maxDrawn        = 12; // (areaHeight/sep);
+    var maxDrawn        = 11; // (areaHeight/sep);
     
     
     // draw the items and buttons

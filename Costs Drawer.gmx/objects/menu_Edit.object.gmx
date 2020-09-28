@@ -71,6 +71,10 @@ ds_list_add(menuItems,          "Junior Counsel Name");
 
 ds_list_add(menuItems,          "break");               // "_____________"
 
+ds_list_add(menuItems,          "Change V.A.T. amount");
+
+ds_list_add(menuItems,          "break");               // "_____________"
+
 ds_list_add(menuItems,          "Spellcheck - Add Word");
 
 ds_list_add(menuItems,          "break");               // "_____________"

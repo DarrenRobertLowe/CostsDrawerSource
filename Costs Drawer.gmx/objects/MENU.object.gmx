@@ -558,6 +558,13 @@ and (exists(MASTER))
                     }
                     
                     
+                    /// CHANGE VAT
+                    if (item == "Change V.A.T. amount")
+                    {
+                        ask_switch_vat_amount();
+                    }
+                    
+                    
                     /// DICTIONARY STUFF
                     if (item == "Spellcheck - Add Word")
                     {
