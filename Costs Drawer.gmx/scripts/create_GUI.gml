@@ -87,7 +87,7 @@
     
     
     // LOAD CUSTOM ITEM VALUES and DEFAULT ITEMS EDITOR
-    /*
+    
     load_customItems();
     if !instance_exists(DEFAULT_ITEMS_EDITOR)   then instance_create(0,0,DEFAULT_ITEMS_EDITOR);
-    */
+    

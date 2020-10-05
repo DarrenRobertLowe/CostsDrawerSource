@@ -111,3 +111,14 @@ ds_list_add(list,"Junior Counsel Fee - Brief for Trial of Action");
 ds_list_add(list,"Junior Counsel Fee - Fee on Consultation");
 ds_list_add(list,"Junior Counsel Fee - Settling affidavit");
 
+
+// ADD CUSTOM ITEMS
+var array = global.arrayOfCicruitCourtCustomItemValues;
+var size  = array_height_2d(array);
+
+for (var i=0; i<size; i++)
+{
+    ds_list_add(list, array[0,0]);
+    show_message("added to list : "+string(array[0,0]));
+}
+

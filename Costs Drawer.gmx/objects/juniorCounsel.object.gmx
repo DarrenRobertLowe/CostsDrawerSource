@@ -92,16 +92,16 @@ if (x2 &lt; endX) // don't show if there's not enough space
 {
     // FONT
     reset_text();
-    if (global.GUI_SCALE == 1) then draw_set_font(font_GUI);
+    if (global.GUI_SCALE == 1)   then draw_set_font(font_GUI);
     if (global.GUI_SCALE == 1.5) then draw_set_font(font_GUI_large);
     draw_set_valign(fa_top);
     
     
     // COLOR and DRAW NAME
-    if (global.JUNIOR_COUNSEL != "")            // if there is a junior counsel name
+    if (global.JUNIOR_COUNSEL != "")    // if there is a junior counsel name
     {
        draw_set_colour(global.itemTextColor);
-       draw_text(x1,y1,shownName);//global.JUNIOR_COUNSEL);
+       draw_text(x1,y1,shownName);      // global.JUNIOR_COUNSEL);
     }
     else
     {
@@ -111,7 +111,8 @@ if (x2 &lt; endX) // don't show if there's not enough space
     
     
     // FUNCTIONALITY (if toggled)
-    if (toggle = 1)
+    if (toggle == 1)
+    if (global.popup == 0)
     {
         draw_set_color(global.highlightColor);
         draw_set_alpha(global.highlightAlpha);
@@ -144,7 +145,7 @@ if (x2 &lt; endX) // don't show if there's not enough space
     
     // TOOLTIP and MOUSE OVER TOGGLE
     if  (mouseOverArea(x1-view_xview[0], y1-view_yview[0], x2-view_xview[0], y2-view_yview[0]) )                  // if the mouse is over this button
-    and (mouse_is_free() = true) //if hovering without performing other actions like dragging a scrollbar, etc...
+    and (mouse_is_free() = true) // if hovering without performing other actions like dragging a scrollbar, etc...
     {
         toggle = 1;
         tooltip("Enter/Change the junior counsel's name");

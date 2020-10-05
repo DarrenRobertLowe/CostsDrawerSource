@@ -453,7 +453,7 @@ if (global.BILL_COURT = "Highcourt")
 
 if (global.BILL_COURT = "Circuit")
   then global.arrayOfCicruitCourtCustomItemValues = array;
-;
+
 // save_item_lists();
 // save_defaultItems();
 save_customItems();
@@ -544,7 +544,7 @@ default_items_editor_draw_popupWindow();
  * than the descriptionTextWidth.
  * 
  */
- 
+
 //default_items_editor_logic_defaultItems();    // default items
 default_items_editor_logic_customItems();       // custom items
 

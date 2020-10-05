@@ -1227,6 +1227,7 @@
         <script>scripts\load_customItems.gml</script>
         <script>scripts\load_customItems_getVal.gml</script>
         <script>scripts\load_customItems_getDescription.gml</script>
+        <script>scripts\check_items_plaintiff_circuit_custom.gml</script>
       </scripts>
     </scripts>
   </scripts>

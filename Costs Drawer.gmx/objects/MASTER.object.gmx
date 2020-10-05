@@ -788,7 +788,7 @@ if  (BILL_STARTED == false)
 if (global.RESTARTING == false)
 {
     global.fileToOpen = "";
-    global.popup      = 0;
+    //global.popup      = 0;
     
     if !exists(global.selected) then global.selected = -1 // fixes so many potential problems
     
