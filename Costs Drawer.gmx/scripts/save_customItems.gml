@@ -1,15 +1,15 @@
 ///save_customItems()
 var filename = "";
-var array    = -1;
+//var array    = -1;
 
 if (global.BILL_COURT == "Circuit")
 {
-    array    = global.arrayOfCicruitCourtCustomItemValues;
+    //array    = global.arrayOfCicruitCourtCustomItemValues;
     fileName = "cc_custom_items.txt";
 }
 else // if (global.BILL_COURT == "Highcourt")
 {
-    array    = global.arrayOfHighCourtCustomItemValues;
+    //array    = global.arrayOfHighCourtCustomItemValues;
     fileName = "hc_custom_items.txt";
 }
 

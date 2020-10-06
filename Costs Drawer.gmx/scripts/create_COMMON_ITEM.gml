@@ -990,21 +990,28 @@ if (global.BILL_COURT == "Circuit")
     {
         newItem =  instance_create(0,0,lastPage_CC_stampOnCertificate)
     }
-
+    
+    
     // CUSTOM ITEMS
     var array = global.arrayOfCicruitCourtCustomItemValues;
     var size  = array_height_2d(array);
     for(var i=0; i<size; i++)
     {
-        if ( item == array[i,0] )
+        if ( item == array[i,0] )   // if we click on an item of this name
         {
             newItem = insert_item(USER_ITEM,pos+1);
             newItem.description  = array[i,0];
-            newItem.outlay       = array[i,1];
-            newItem.professional = array[i,2];
+            
+            newItem.outlay       = real(array[i,1]);
+            newItem.professional = real(array[i,2]);
+            with (newItem)
+            {
+                confirmDescription(description);
+                outlayText = formatQuantum(outlay);
+                professionalText = formatQuantum(professional);
+            }
         }
     }
-    
 } // END OF CIRCUIT COURT
 
 

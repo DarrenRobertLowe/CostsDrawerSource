@@ -41,10 +41,22 @@ rowAlpha        = 0.3;
 
 
 // setup
-array = 0;    // used for custom items
+array[0,0] = 0;         // used for custom items
 if (global.BILL_COURT == "Circuit")
   then array = global.arrayOfCicruitCourtCustomItemValues;
   else array = global.arrayOfHighCourtCustomItemValues;
+
+
+
+// copy the array so we can revert if needed
+listArrayBeforeEditing[0,0] = 0;
+var size = array_height_2d(array);
+for(var i=0; i&lt;size; i++)
+{
+    listArrayBeforeEditing[i,0] = array[i,0];  // name / description
+    listArrayBeforeEditing[i,1] = array[i,1];  // outlay
+    listArrayBeforeEditing[i,2] = array[i,2];  // professional
+}
 
 
 defaultItemsArray       = 0;    // will be used for default items
@@ -75,7 +87,6 @@ windowY2        = (windowY1 + (rowHeight*30));
 footerHeight    = 50;
 footerY1        = windowY2;
 footerY2        = (windowY2 + footerHeight);
-
 
 quantumColumnWidth      = 120;
 defaultValueColumnX     = (windowX2 - quantumColumnWidth);
@@ -137,8 +148,6 @@ moveDownButton      = instance_create((windowX1 + 293), footerButtonsY, button_D
 changesMade         = false;
 saveButton.visible  = false;
 closeButton.visible = true;
-
-var maxItem = default_items_editor_getMaxItem();
 </string>
           </argument>
         </arguments>
@@ -338,7 +347,7 @@ and (indexSelected &gt; -1)
     }
     
     // avoid crashes by invalid index being selected
-    maxItem   = default_items_editor_getMaxItem();
+    maxItem  = default_items_editor_getMaxItem();
     
     var size = (array_height_2d(array) -1);
     if (indexSelected &gt; size) then indexSelected = -1;
@@ -370,17 +379,107 @@ else indexSelected = -1;
           <argument>
             <kind>1</kind>
             <string>/// add an item
+/* Asks the user to enter a description.
+ *
+ * The description string is formatted to
+ * removed special characters and trailing
+ * spaces.
+ *
+ * If the string is on the sorting list, or
+ * exists as a custom item already, the new
+ * item will be rejected and the user will be
+ * shown an error message saying an item with
+ * that description already exists.
+ * 
+ * Lastly the item is added to the list of
+ * custom items (but is not saved yet)
+*/
 
-var str   = get_string("Enter a description", "This is a new item");
-var index = (default_items_editor_getMaxItem());
 
-array[index, 0] = str;
-array[index, 1] = 0;
-array[index, 2] = 0;
+// get the string
+var str = "";
+str  = get_string("Enter a description", "");
 
-indexSelected = index;
-// show save button, etc.
-event_user(2);
+
+// clean the string
+if (str != "")
+{
+    str = text_remove_special_chars_lite(str);
+    str = removeTrailingSpaces(str);
+    str = string_copy(str, 1, global.maxDescriptionChars); // trim to the max char count;
+    
+    
+    // check what jurisdiction we're in so we have the correct list
+    var list  = -1;
+    var court = global.BILL_COURT;
+    
+    if (court == "Circuit")
+    {
+        list  = global.sortingListCCPlaintiff;
+        //array = global.arrayOfCicruitCourtCustomItemValues;
+    }
+    
+    if (court == "Highcourt")
+    {
+        list  = global.sortingListHCPlaintiff;
+        //array = global.arrayOfHighCourtCustomItemValues;
+    }
+    
+    
+    // check for duplicates
+    if (list &gt; -1)
+    {
+        // check for duplicates in standard items
+        var size = ds_list_size(list);
+        
+        for (var i=0; i&lt;size; i++)
+        {
+            var val = ds_list_find_value(list, i);
+            if (str == val)
+            {
+                show_message("A standard item with this description already exists. Item descriptions must be unique.");
+                exit;
+            }
+        }
+        
+        
+        // check for duplicates in our custom items
+        var size  = array_height_2d(array);
+        
+        for(var i=0; i&lt;size; i++)
+        {
+            var desc = array[i,0]; // [i,0] = name/description of the item
+            if (str == desc)
+            {
+                show_message("A custom item with this description already exists. Item descriptions must be unique.");
+                exit;
+            }
+        }
+    }
+    else
+    {
+        show_message("Error: Could not determine court jurisdiction! Please contact support!");
+        exit;
+    }
+    
+    
+    // add the new item to the list
+    var index = -1;
+    index = default_items_editor_getMaxItem();
+    
+    if (index &gt; -1)
+    {
+        array[index, 0] = str;
+        array[index, 1] = 0;
+        array[index, 2] = 0;
+    }
+    
+    indexSelected = index;
+    
+    // show save button, etc.
+    event_user(2);
+}
+else exit;
 </string>
           </argument>
         </arguments>
@@ -428,7 +527,7 @@ saveButton.visible = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Save and hide "CONFIRM"
+            <string>/// Save the list and hide the "SAVE" button
 show_message("Settings saved!");
 
 // save the item lists
@@ -457,7 +556,7 @@ if (global.BILL_COURT = "Circuit")
 // save_item_lists();
 // save_defaultItems();
 save_customItems();
-
+listArrayBeforeEditing = array;
 
 saveButton.visible  = false;
 </string>
@@ -483,28 +582,33 @@ saveButton.visible  = false;
           <argument>
             <kind>1</kind>
             <string>/// Try to close
-var ok = false;
+var proceed = false;
 
 
-if (changesMade == false)
+if (changesMade == true) // changes have been made so we must ask the user if they mean to close
 {
-    ok = true;
-}
-else // changes have been made so we must ask the user if they mean to close
-{
-    if (show_question("Changes will NOT be saved. Cancel anyway?"))
+    if (show_question("Changes will NOT be saved. Close anyway?"))
     {
-        ok = true;
+        // revert the array to what it was last saved as
+        if (global.BILL_COURT == "Circuit")
+          then global.arrayOfCicruitCourtCustomItemValues   = listArrayBeforeEditing;
+          else global.arrayOfHighCourtCustomItemValues      = listArrayBeforeEditing;
+            
+        proceed = true;
     }
+}
+else // no chances made so we can safely close without asking the user.
+{
+    proceed = true;
 }
 
 
 // close
-if (ok == true)
+if (proceed == true)
 {
-    instance_destroy(self, true);
+    COMMON_ITEMS_CHECKER.alarm[0] = 1;  // update the list of items
+    instance_destroy(self, true);       // close the editor
 }
-
 </string>
           </argument>
         </arguments>
@@ -539,10 +643,6 @@ default_items_editor_draw_popupWindow();
 
 /* TO DO:
  * We'll need a scrollbar and scroll buttons.
- *
- * We want to trim the description if it's longer
- * than the descriptionTextWidth.
- * 
  */
 
 //default_items_editor_logic_defaultItems();    // default items

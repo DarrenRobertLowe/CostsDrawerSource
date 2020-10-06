@@ -1,14 +1,14 @@
 ///default_items_editor_logic_customItems();
 var y1          = windowY1;
 var y2          = windowY2;
-maxItemVisible   = default_items_editor_getMaxItem();
+maxItemVisible  = default_items_editor_getMaxItem(array);
 size            = array_height_2d(array);
 lastIndex       = (size-1);
 
 
 if (lastIndex > -1)
 {
-    // allow scrolling through list
+    // MOUSE WHEEL SCROLLING
     if ( mouse_over_popup_area(windowX1,windowY1,windowX2,windowY2) )
     {
         if (mouse_wheel_up())
@@ -48,7 +48,6 @@ if (lastIndex > -1)
         } 
         
         
-        
         /// DESCRIPTION
         // mouse clicking
         if ( mouse_over_popup_area(descriptionColumnX, y2, outlayColumnX, yy) )
@@ -57,7 +56,7 @@ if (lastIndex > -1)
             {
                 fieldSelected = descriptionFieldIndex;
                 
-                // enteredValue-click on row
+                // click on row
                 if (indexSelected == i)
                 {
                     if (double_clicked())
@@ -76,7 +75,7 @@ if (lastIndex > -1)
         
         
         // edit with keyboard
-        if keyboard_check_pressed(vk_enter)
+        if (keyboard_check_pressed(vk_enter))
         {
             if  (indexSelected == i)
             and (fieldSelected == descriptionFieldIndex)
@@ -110,8 +109,25 @@ if (lastIndex > -1)
         
         draw_set_alpha(1);
         
+        
         // DRAW DESCRIPTION TEXT
         draw_set_halign(fa_left);
+        /*
+        var idesc        = "";
+        var ilength      = string_length(description);
+        var targetLength = (descriptionColumnWidth - string_length("..."));
+        
+        for (var i=0; i<ilength; i++)
+        {
+            if (string_length(idesc) >= targetLength)
+            {
+                idesc += "...";   // trim and exit
+                i = ilength;
+            }
+            else idesc = string_copy(description, 1, i); // add a char
+        }
+        */
+        
         draw_text(descriptionTextX, yy, description);
         
         

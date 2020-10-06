@@ -1230,6 +1230,7 @@
         <script>scripts\check_items_plaintiff_circuit_custom.gml</script>
       </scripts>
     </scripts>
+    <script>scripts\text_remove_special_chars_lite.gml</script>
   </scripts>
   <fonts name="fonts">
     <fonts name="GUI">
