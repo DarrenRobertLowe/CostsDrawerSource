@@ -3,5 +3,5 @@
 if (indexSelected < startingIndex)
   then startingIndex = indexSelected;
   
-if (indexSelected >= (startingIndex + maxItemsShowable))
-  then startingIndex++;
+if (indexSelected >= maxItemVisible)
+  then startingIndex = indexSelected;

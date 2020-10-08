@@ -9,7 +9,7 @@ lastIndex       = (size-1);
 if (lastIndex > -1)
 {
     // MOUSE WHEEL SCROLLING
-    if ( mouse_over_popup_area(windowX1,windowY1,windowX2,windowY2) )
+    if ( mouse_over_popup_area(windowX1, windowY1, windowX2, windowY2) )
     {
         if (mouse_wheel_up())
         {
@@ -45,7 +45,7 @@ if (lastIndex > -1)
             draw_set_alpha(1);
             draw_set_color(c_blue);
             draw_rectangle(windowX1, y2-2, windowX2, yy+2, true);
-        } 
+        }
         
         
         /// DESCRIPTION
@@ -71,6 +71,8 @@ if (lastIndex > -1)
                     reset_clickTime();
                 }
             }
+            
+            tooltip(array[i,0]);
         }
         
         
@@ -110,29 +112,25 @@ if (lastIndex > -1)
         draw_set_alpha(1);
         
         
+        
         // DRAW DESCRIPTION TEXT
         draw_set_halign(fa_left);
-        /*
+        
         var idesc        = "";
-        var ilength      = string_length(description);
-        var targetLength = (descriptionColumnWidth - string_length("..."));
+        var strLength    = (string_length(description) + 1);
+        var targetWidth  = ( (descriptionColumnWidth - descriptionTextX) - string_width("...") );
         
-        for (var i=0; i<ilength; i++)
+        for (var a=0; a < strLength; a++)
         {
-            if (string_length(idesc) >= targetLength)
+            if (string_width(idesc) > targetWidth)
             {
-                idesc += "...";   // trim and exit
-                i = ilength;
+                idesc += "...";     // trim and exit
+                a = strLength;
             }
-            else idesc = string_copy(description, 1, i); // add a char
+            else idesc = string_copy(description, 0, a); // add a char
         }
-        */
         
-        draw_text(descriptionTextX, yy, description);
-        
-        
-        
-        
+        draw_text(descriptionTextX, yy, idesc);
         
         
         
@@ -270,6 +268,7 @@ if (lastIndex > -1)
                 // black text
                 draw_set_color(c_black);
             }
+            
             
             /// DRAW OUTLAY
             draw_set_alpha(1);

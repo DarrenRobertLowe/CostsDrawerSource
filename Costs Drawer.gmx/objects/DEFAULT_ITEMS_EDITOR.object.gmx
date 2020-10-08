@@ -72,77 +72,32 @@ professionalValueFieldIndex = 2;
 lastField               = 2;
 size                    = array_height_2d(array);
 lastIndex               = (size-1);
-maxItemsShowable        = 29;          // floor((700 / rowHeight));
 startingIndex           = 0;
-//show_message("maxItemsShowable = "+string(maxItemsShowable));
 
 setup_clickTimer(); // for double-clicking checks
 
+// initialize the button variables as default_items_editor_get_positions
+// needs to check for their existance and move them if they exist whenever
+// the user resizes the window.
+saveButton      = -1;
+closeButton     = -1;
+addButton       = -1;
+deleteButton    = -1;
+moveUpButton    = -1;
+moveDownButton  = -1;
 
-
-windowX1        = 10;
-windowX2        = 740;
-windowY1        = 10;
-windowY2        = (windowY1 + (rowHeight*30));
-footerHeight    = 50;
-footerY1        = windowY2;
-footerY2        = (windowY2 + footerHeight);
-
-quantumColumnWidth      = 120;
-defaultValueColumnX     = (windowX2 - quantumColumnWidth);
-newValueColumnX         = (defaultValueColumnX - quantumColumnWidth);
-professionalColumnX     = (windowX2 - quantumColumnWidth);
-outlayColumnX           = (professionalColumnX - quantumColumnWidth);
-descriptionColumnWidth  = (newValueColumnX - windowX1);
-descriptionColumnX      = windowX1;
-descriptionColumnEndX   = (newValueColumnX - quantumColumnWidth);
-
-
-margin = 5;
-defaultValueTextX       = ((defaultValueColumnX + quantumColumnWidth) - margin);
-newValueTextX           = ((newValueColumnX     + quantumColumnWidth) - margin);
-outlayTextX             = ((outlayColumnX + quantumColumnWidth) - margin);
-professionalTextX       = ((professionalColumnX + quantumColumnWidth) - margin);
-
-descriptionTextX        = (windowX1 + margin);
-descriptionTextWidth    = ((newValueColumnX - descriptionTextX) - margin);
-headerY                 = (windowY1 + rowHeight);        // the headers
-outlayProfessionalY     = (headerY + (rowHeight*1));     // where the "Outlay Prof." header text goes
-listStartY              = (headerY + (rowHeight*1));     // where the items start
-
-customHeaderY           = (windowY1 + rowHeight*16);     // the headers
-customListStartY        = (customHeaderY + rowHeight);   // where the custom items start
-headerDescriptionX      = (newValueColumnX / 2);
-headerNewValueX         = (newValueColumnX + ((defaultValueColumnX-newValueColumnX)/2));
-headerDefaultValueX     = (defaultValueColumnX + ((windowX2-defaultValueColumnX)/2));
-
-
-
-
-// REPOSITION CUSTOM HEADERS Y
-/* Because we don't have ability to edit default items yet
- * we want to put the CUSTOM ITEMS Y to be that of the
- * DEFAULT ITEMS Y for now
-*/
-customHeaderY = headerY;
-
-/// Footer buttons calculations
-var targetSprite    = spr_popup_save;
-var footerMiddle    = round(footerY1 + (footerY2 - footerY1) / 2);
-var halfWidth       = round(sprite_get_width(targetSprite)   / 2);
-var halfHeight      = round(sprite_get_height(targetSprite)  / 2);
-var footerButtonsY  = round(footerMiddle    - halfHeight);
-var footerButton1x  = (headerNewValueX      - halfWidth);
-var footerButton2x  = (headerDefaultValueX  - halfWidth);
-
+// position everything
+default_items_editor_get_positions();
 
 // instantiate buttons
-saveButton          = instance_create(footerButton1x,   footerButtonsY, button_DEFAULT_ITEMS_EDIT_save);
-closeButton         = instance_create(footerButton2x,   footerButtonsY, button_DEFAULT_ITEMS_EDIT_done);
-addButton           = instance_create((windowX1 + 10),  footerButtonsY, button_DEFAULT_ITEMS_EDIT_add);
-deleteButton        = instance_create((windowX1 + 104), footerButtonsY, button_DEFAULT_ITEMS_EDIT_delete);
-moveUpButton        = instance_create((windowX1 + 200), footerButtonsY, button_DEFAULT_ITEMS_EDIT_moveUp);
-moveDownButton      = instance_create((windowX1 + 293), footerButtonsY, button_DEFAULT_ITEMS_EDIT_moveDown);
+addButton           = instance_create(footerButton3x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_add);
+deleteButton        = instance_create(footerButton4x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_delete);
+moveUpButton        = instance_create(footerButton5x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_moveUp);
+moveDownButton      = instance_create(footerButton6x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_moveDown);
+saveButton          = instance_create(footerButton1x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_save);
+closeButton         = instance_create(footerButton2x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_done);
+
+
 
 
 changesMade         = false;

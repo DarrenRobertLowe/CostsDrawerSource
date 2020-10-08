@@ -1228,6 +1228,7 @@
         <script>scripts\load_customItems_getVal.gml</script>
         <script>scripts\load_customItems_getDescription.gml</script>
         <script>scripts\check_items_plaintiff_circuit_custom.gml</script>
+        <script>scripts\default_items_editor_get_positions.gml</script>
       </scripts>
     </scripts>
     <script>scripts\text_remove_special_chars_lite.gml</script>
