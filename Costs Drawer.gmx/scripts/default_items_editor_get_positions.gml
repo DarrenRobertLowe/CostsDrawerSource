@@ -142,3 +142,31 @@ if (exists(button))
         y2 = (y + sprite_height);
     }
 }
+
+
+
+
+/// scrollbar stuff
+if (exists(customScrollbar))
+{
+    customScrollbar.y = listStartY;
+    customScrollbar.x = windowX2;
+    customScrollbar.scrollAreaHeight = popupWindowHeight;
+    customScrollbar.height = 100;
+    customScrollbar.scrollAreaStartX = windowX2;
+    customScrollbar.scrollAreaEndX   = scrollAreaStartX + 18;
+    customScrollbar.scrollAreaStartY = listStartY;
+    customScrollbar.scrollAreaEndY   = (y + popupWindowHeight);
+}
+
+
+if (exists(customScrollbarUp))
+{
+    customScrollbarUp.x = windowX2;
+    customScrollbarUp.y = (listStartY - 18);
+}
+if (exists(customScrollbarDown))
+{
+    customScrollbarDown.x = windowX2;
+    customScrollbarDown.y = (popupWindowHeight - 18);
+}

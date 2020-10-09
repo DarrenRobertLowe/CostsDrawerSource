@@ -13,14 +13,12 @@ if (lastIndex > -1)
     {
         if (mouse_wheel_up())
         {
-            startingIndex--;
-            constrain_item_editor_scrolling();
+            event_user(7);  // scroll up
         }
         
         if (mouse_wheel_down())
         {
-            startingIndex++
-            constrain_item_editor_scrolling();
+            event_user(8);  // scroll down
         }
     }
     

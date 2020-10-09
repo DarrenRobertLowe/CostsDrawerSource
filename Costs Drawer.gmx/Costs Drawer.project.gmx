@@ -822,6 +822,9 @@
       <script>scripts\mouseIsOverRightColumnDivider.gml</script>
       <script>scripts\mouseInsideWindow.gml</script>
       <script>scripts\mouseIsOverWindowResizeArea.gml</script>
+      <scripts name="POPUPS">
+        <script>scripts\mouseOverDefaultItems_Scrollbar.gml</script>
+      </scripts>
     </scripts>
     <scripts name="Checks">
       <script>scripts\in_view.gml</script>
@@ -1229,6 +1232,7 @@
         <script>scripts\load_customItems_getDescription.gml</script>
         <script>scripts\check_items_plaintiff_circuit_custom.gml</script>
         <script>scripts\default_items_editor_get_positions.gml</script>
+        <script>scripts\customItems_get_current_item_from_scrollbar.gml</script>
       </scripts>
     </scripts>
     <script>scripts\text_remove_special_chars_lite.gml</script>
@@ -1665,6 +1669,10 @@
         <object>objects\button_DEFAULT_ITEMS_EDIT_delete</object>
         <object>objects\button_DEFAULT_ITEMS_EDIT_moveUp</object>
         <object>objects\button_DEFAULT_ITEMS_EDIT_moveDown</object>
+        <object>objects\default_items_custom_scrollbar</object>
+        <object>objects\default_items_editor_scrollbar_buttons_PARENT</object>
+        <object>objects\default_items_custom_scrollbar_up</object>
+        <object>objects\default_items_custom_scrollbar_down</object>
       </objects>
     </objects>
   </objects>

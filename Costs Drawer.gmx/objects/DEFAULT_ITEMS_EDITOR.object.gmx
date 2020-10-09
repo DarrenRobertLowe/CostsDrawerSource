@@ -29,6 +29,7 @@
 rowHeight     = global.rowHeight;
 
 // initialize
+maxItemVisible  = 0;
 defDescIndex    = 0;
 newDescIndex    = 1;
 defValueIndex   = 2;
@@ -38,6 +39,8 @@ customOutlayIndex       = 1;
 customProfessionalIndex = 2;
 highlight_color = make_color_rgb(128,128,255);
 rowAlpha        = 0.3;
+
+
 
 
 // setup
@@ -85,9 +88,16 @@ addButton       = -1;
 deleteButton    = -1;
 moveUpButton    = -1;
 moveDownButton  = -1;
+customScrollbar = -1;
+customScrollbarUp   = -1;
+customScrollbarDown = -1;
 
 // position everything
 default_items_editor_get_positions();
+customScrollbar     = instance_create(0,0,default_items_custom_scrollbar);
+customScrollbarUp   = instance_create(0,0,default_items_custom_scrollbar_up);
+customScrollbarDown = instance_create(0,0,default_items_custom_scrollbar_down);
+
 
 // instantiate buttons
 addButton           = instance_create(footerButton3x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_add);
@@ -146,10 +156,63 @@ if instance_exists(moveUpButton)
 if instance_exists(moveDownButton)
  then instance_destroy(moveDownButton);
  
- 
+if instance_exists(customScrollbar)
+ then instance_destroy(customScrollbar);
+
+
 // reset variables
 global.menuSelected = 0;
 global.popup        = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="18">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// scroll down the list
+startingIndex++;
+constrain_item_editor_scrolling();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// scroll up the list
+startingIndex--;
+constrain_item_editor_scrolling();
 </string>
           </argument>
         </arguments>
@@ -596,9 +659,6 @@ draw_set_font(font_GUI);
 // draw popup window
 default_items_editor_draw_popupWindow();
 
-/* TO DO:
- * We'll need a scrollbar and scroll buttons.
- */
 
 //default_items_editor_logic_defaultItems();    // default items
 default_items_editor_logic_customItems();       // custom items
