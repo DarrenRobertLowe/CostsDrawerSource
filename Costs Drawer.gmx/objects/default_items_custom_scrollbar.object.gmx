@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10001</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -32,7 +32,7 @@ width  = 18;
 x = editor.windowX2;
 y = editor.listStartY;
 
-scrollbarAreaHeight             = 0;
+scrollAreaHeight                = 0;
 updateInterval                  = global.sideColumnUpdateSpeed;             // (room_speed/N) so higher is faster
 rightColumnWindowHeaderHeight   = global.rightColumnWindowHeaderHeight;     // header area height
 delayBeforeButtonRepeat         = -1;
@@ -71,6 +71,7 @@ currentPos          = 0;    // how far we have scrolled vertically
             <string>/// recalculate values
 
 // position the scrollbar to the index
+/*
 if (dragging == false)
 {
     var index       = editor.indexSelected;
@@ -85,6 +86,7 @@ if (dragging == false)
     
     y  = (scrollAreaStartY + scrollbarPosition);  // y of the scrollbar itself, not the area
 }
+*/
 </string>
           </argument>
         </arguments>
@@ -110,9 +112,21 @@ if (dragging == false)
             <string>/// mouse hover and click events
 // NOTE: editor = DEFAULT_ITEMS_EDITOR
 
+if !(exists(editor)) then exit;
+
+
 // before dragging
 if (dragging == false)
 {
+    // snap to position of list
+    var listSize            = editor.listSize;
+    var startingIndex       = editor.startingIndex;
+    var scrollableDistance  = (scrollAreaHeight - height);
+    
+    var vPos = ((scrollableDistance / listSize) * startingIndex);
+    y = (scrollAreaStartY + vPos);
+    
+    
     // mouse is over the scrollbar itself
     if ( mouseOverDefaultItems_Scrollbar() )
     {
@@ -125,7 +139,7 @@ if (dragging == false)
         }
     }
     
-    
+    /*
     // mouse is just over the scrollbar area
     else if ( mouseOverScrollArea() )
     {
@@ -136,7 +150,7 @@ if (dragging == false)
             
             
             // first we find what percentage the scrollbar is down the scoll area
-            var scrollableDistance  = (scrollAreaHeight - height);      // example: scrollable distance is 450 if the bar itself is 100 pixels and the area is 550.
+            // var scrollableDistance  = (scrollAreaHeight - height);      // example: scrollable distance is 450 if the bar itself is 100 pixels and the area is 550.
             var pixelPosition       = (y - scrollAreaStartY);
             var percentagePosition  = (pixelPosition / scrollableDistance);
             
@@ -151,7 +165,7 @@ if (dragging == false)
             exit; // avoid running the dragging event
         }
     }
-    
+    */
     
     // mouse is over nothing
     else
@@ -167,22 +181,15 @@ if ( dragging == true )
 {
     y = ( window_mouse_get_y() - mouse_pos );
     constrain_scrollbar();
-    currentPos = customItems_get_current_item_from_scrollbar(); // false here says we don't have a horizontal bar 
+    currentPos = customItems_get_current_item_from_scrollbar();
     
     editor.startingIndex = currentPos;
-    //alarm[0] = 1;
 }
 
 
 // finished dragging
 if ( mouse_check_button_released(mb_left) )
 {
-    currentPos = customItems_get_current_item_from_scrollbar();
-    
-    editor.startingIndex = currentPos;
-    //alarm[0] = 1;
-    
-    
     dragging = false;
     constrain_scrollbar();
 }
@@ -209,6 +216,12 @@ if ( mouse_check_button_released(mb_left) )
           <argument>
             <kind>1</kind>
             <string>/// draw the scroll bar
+
+// draw the background for the scrollbar
+draw_set_color(global.guiColor);
+draw_rectangle(x, scrollAreaStartY, (x + width), scrollAreaEndY, false);
+
+// draw the draggable bar
 if (mouseOver)
 {
     draw_set_color(global.scrollbarColorDark)   // dark gray

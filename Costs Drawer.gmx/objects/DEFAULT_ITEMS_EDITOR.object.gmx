@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// setup positions and spawn buttons
-rowHeight     = global.rowHeight;
+rowHeight       = global.POPUP_DEFAULT_ITEMS_rowHeight;
 
 // initialize
 maxItemVisible  = 0;
@@ -42,7 +42,6 @@ rowAlpha        = 0.3;
 
 
 
-
 // setup
 array[0,0] = 0;         // used for custom items
 if (global.BILL_COURT == "Circuit")
@@ -54,7 +53,9 @@ if (global.BILL_COURT == "Circuit")
 // copy the array so we can revert if needed
 listArrayBeforeEditing[0,0] = 0;
 var size = array_height_2d(array);
-for(var i=0; i&lt;size; i++)
+
+var i=0;
+for(i=0; i&lt;size; i++)
 {
     listArrayBeforeEditing[i,0] = array[i,0];  // name / description
     listArrayBeforeEditing[i,1] = array[i,1];  // outlay
@@ -73,8 +74,8 @@ newValueFieldIndex      = 2;
 outlayValueFieldIndex   = 1;
 professionalValueFieldIndex = 2;
 lastField               = 2;
-size                    = array_height_2d(array);
-lastIndex               = (size-1);
+listSize                = array_height_2d(array);
+lastIndex               = (listSize-1);
 startingIndex           = 0;
 
 setup_clickTimer(); // for double-clicking checks
@@ -107,7 +108,7 @@ moveDownButton      = instance_create(footerButton6x, footerButtonsY, button_DEF
 saveButton          = instance_create(footerButton1x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_save);
 closeButton         = instance_create(footerButton2x, footerButtonsY, button_DEFAULT_ITEMS_EDIT_done);
 
-
+default_items_editor_get_positions();
 
 
 changesMade         = false;
@@ -158,6 +159,12 @@ if instance_exists(moveDownButton)
  
 if instance_exists(customScrollbar)
  then instance_destroy(customScrollbar);
+
+if instance_exists(customScrollbarUp)
+ then instance_destroy(customScrollbarUp);
+ 
+if instance_exists(customScrollbarDown)
+ then instance_destroy(customScrollbarDown);
 
 
 // reset variables
@@ -659,9 +666,9 @@ draw_set_font(font_GUI);
 // draw popup window
 default_items_editor_draw_popupWindow();
 
-
-//default_items_editor_logic_defaultItems();    // default items
 default_items_editor_logic_customItems();       // custom items
+
+default_items_editor_draw_headerFooter();
 
 
 /// KEYBOARD CONTROLS

@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>/// initialize
-
 image_speed = 0;
 image_index = 0;
 editor = DEFAULT_ITEMS_EDITOR;
@@ -54,7 +53,7 @@ editor = DEFAULT_ITEMS_EDITOR;
             <kind>1</kind>
             <string>/// mouse hover and click
 
-if (mouseOverSprite())
+if mouse_over_popup_area(x, y, x+sprite_width, y+sprite_height) //(mouseOverSprite())
 {
     // change image
     if ( mouse_check_button(mb_left) )

@@ -1,18 +1,19 @@
 //default_items_editor_get_positions();
 
-windowX1            = 10;
-popupWindowWidth    = 730;
-windowX2            = (windowX1 + popupWindowWidth);
-windowY1            = 10;
-footerHeight        = 50;
-popupWindowHeight   = window_get_height() - (footerHeight*2);
-popupWindowHeight   = max(popupWindowHeight, footerHeight*4);
-windowY2            = (windowY1 + popupWindowHeight);//(windowY1 + (rowHeight*30));
-maxItemsShowable    = floor((popupWindowHeight / rowHeight)-1);
-maxItemsShowable    = max(maxItemsShowable, 0);
+windowX1                = 10;
+popupWindowWidth        = 730;
+windowX2                = (windowX1 + popupWindowWidth);
+windowY1                = 10;
+footerHeight            = 50;
+popupWindowHeight       = window_get_height() - (footerHeight*2);
+popupWindowHeight       = max(popupWindowHeight, footerHeight*4);
+contentEndY             = (windowY1 + popupWindowHeight);
+maxItemsShowable        = floor((popupWindowHeight / rowHeight)-1);
+maxItemsShowable        = max(maxItemsShowable, 0);
 
-footerY1            = windowY2;
-footerY2            = (windowY2 + footerHeight);
+footerY1                = contentEndY;
+footerY2                = (contentEndY + footerHeight);
+
 
 quantumColumnWidth      = 120;
 defaultValueColumnX     = (windowX2 - quantumColumnWidth);
@@ -27,7 +28,7 @@ descriptionColumnEndX   = (newValueColumnX - quantumColumnWidth);
 margin = 5;
 defaultValueTextX       = ((defaultValueColumnX + quantumColumnWidth) - margin);
 newValueTextX           = ((newValueColumnX     + quantumColumnWidth) - margin);
-outlayTextX             = ((outlayColumnX + quantumColumnWidth) - margin);
+outlayTextX             = ((outlayColumnX       + quantumColumnWidth) - margin);
 professionalTextX       = ((professionalColumnX + quantumColumnWidth) - margin);
 
 descriptionTextX        = (windowX1 + margin);
@@ -42,6 +43,9 @@ headerDescriptionX      = (newValueColumnX / 2);
 headerNewValueX         = (newValueColumnX + ((defaultValueColumnX-newValueColumnX)/2));
 headerDefaultValueX     = (defaultValueColumnX + ((windowX2-defaultValueColumnX)/2));
 
+buttonSize              = 17; // width and height of the scrollbar buttons
+scrollbarX              = (windowX2 + 1);
+popupWindowEndX         = (scrollbarX + buttonSize);
 
 
 
@@ -147,26 +151,29 @@ if (exists(button))
 
 
 /// scrollbar stuff
+var scrollAreaStartY = (listStartY - rowHeight);
+
+
 if (exists(customScrollbar))
 {
-    customScrollbar.y = listStartY;
+    customScrollbar.y = scrollAreaStartY;
     customScrollbar.x = windowX2;
-    customScrollbar.scrollAreaHeight = popupWindowHeight;
-    customScrollbar.height = 100;
-    customScrollbar.scrollAreaStartX = windowX2;
-    customScrollbar.scrollAreaEndX   = scrollAreaStartX + 18;
-    customScrollbar.scrollAreaStartY = listStartY;
-    customScrollbar.scrollAreaEndY   = (y + popupWindowHeight);
+    customScrollbar.height = 100;   // no real point in having this be dynamic
+    customScrollbar.scrollAreaStartY = scrollAreaStartY;
+    customScrollbar.scrollAreaHeight = (footerY1 - scrollAreaStartY);
+    customScrollbar.scrollAreaStartX = scrollbarX;
+    customScrollbar.scrollAreaEndX   = (scrollbarX + buttonSize);
+    customScrollbar.scrollAreaEndY   = footerY1;
 }
 
 
 if (exists(customScrollbarUp))
 {
-    customScrollbarUp.x = windowX2;
-    customScrollbarUp.y = (listStartY - 18);
+    customScrollbarUp.x = scrollbarX;
+    customScrollbarUp.y = (scrollAreaStartY - buttonSize);
 }
 if (exists(customScrollbarDown))
 {
-    customScrollbarDown.x = windowX2;
-    customScrollbarDown.y = (popupWindowHeight - 18);
+    customScrollbarDown.x = scrollbarX;
+    customScrollbarDown.y = footerY1;
 }

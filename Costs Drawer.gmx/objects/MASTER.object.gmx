@@ -147,6 +147,7 @@ global.estimatedCharacterWidth = 7.3;           // used by right column text to 
 global.totalRows            = 0;                //42;
 global.rowsPerPage          = 42;
 global.rowHeight            = 25;               //14    //0.26 inches
+global.POPUP_DEFAULT_ITEMS_rowHeight = 25;
 global.defaultRowHeight     = global.rowHeight; //14    //0.26 inches
 global.documentHeight       = (global.totalRows * global.rowHeight);
 global.pageStart            = 92;               // vertical start position of page
@@ -1791,6 +1792,30 @@ and (global.CURSOR_TOOL == "split")
         global.CURSOR_TOOL = "normal";
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="120">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// DEBUG - Launch Custom Items Editor
+if !instance_exists(DEFAULT_ITEMS_EDITOR)   then instance_create(0,0,DEFAULT_ITEMS_EDITOR);
 </string>
           </argument>
         </arguments>
