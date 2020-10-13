@@ -289,6 +289,8 @@ active = false;
             guiy = window_mouse_get_y();                        // takes the y position from the gui layer and translates it to mouse_y
             
             draw_set_font(font_GUI);
+            if (global.GUI_SCALE == 1.5) then draw_set_font(font_GUI_large);
+            
             draw_set_valign(fa_top);
             draw_set_color(global.tooltipsTextColor);
             
@@ -309,7 +311,7 @@ active = false;
             var guiy        = window_mouse_get_y();                    // takes the y position from the gui layer and translates it to mouse_y
             var width       = 0;
             var maxWidth    = (wHeight/3);
-            var separation  = global.rowHeight;
+            var separation  = (global.defaultRowHeight * global.GUI_SCALE);
             var line        = "";
             
             // GET THE WIDTH OF THE BACKGROUND AREA

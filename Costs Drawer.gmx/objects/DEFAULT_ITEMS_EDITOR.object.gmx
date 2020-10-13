@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// setup positions and spawn buttons
-rowHeight       = global.POPUP_DEFAULT_ITEMS_rowHeight;
+rowHeight       = (global.defaultRowHeight * global.GUI_SCALE);
 
 // initialize
 maxItemVisible  = 0;
@@ -40,6 +40,9 @@ customProfessionalIndex = 2;
 highlight_color = make_color_rgb(128,128,255);
 rowAlpha        = 0.3;
 
+// font
+myFont = font_GUI
+if (global.GUI_SCALE == 1.5) then myFont = font_GUI_large;
 
 
 // setup
@@ -660,7 +663,7 @@ if (proceed == true)
 global.menuSelected = id;
 global.popup        = id;
 
-draw_set_font(font_GUI);
+draw_set_font(myFont);
 
 
 // draw popup window
