@@ -83,4 +83,8 @@
     if !instance_exists(TOOLTIPS)               then instance_create(0,0,TOOLTIPS);
     if !instance_exists(COMMON_ITEMS_CHECKER)   then instance_create(0,0,COMMON_ITEMS_CHECKER);
     if !instance_exists(SEARCH_TEXT)            then instance_create(0,0,SEARCH_TEXT);
+
+    // LOAD CUSTOM ITEM VALUES FOR DEFAULT ITEMS EDITOR
+    load_customItems();
+
     if !instance_exists(VAT_CHANGER)            then instance_create(0,0,VAT_CHANGER);

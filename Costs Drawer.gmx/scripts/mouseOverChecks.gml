@@ -2,7 +2,7 @@
 /* Also see user_item_dates() etc...
 */
 if (global.PRINT_VIEW == true) then exit;
-if (global.menuSelected != 0)  then exit;      // used to prevent selecting item while File Menu is open
+if (global.menuSelected != 0)  then exit;      // used to prevent selecting items while File Menu is open
 if (global.middleMouseDragging == true) then exit;
 if (exists(global.selected)) and (editing_item(global.selected)) then exit;
 

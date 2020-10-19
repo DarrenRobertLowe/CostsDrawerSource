@@ -54,22 +54,29 @@ alarm[0] = 2; /// CHECK THE LIST
             <kind>1</kind>
             <string>/// CHECK THE LIST
 /*
- * See also  create_COMMON_ITEM()
+ * See also create_COMMON_ITEM()
 */
 
-if (global.BILL_ON_BEHALF_OF == "Plaintiff")
-and global.BILL_COURT = "Highcourt"
+
+//if  (global.BILL_ON_BEHALF_OF == "Plaintiff")
+if (global.BILL_COURT = "Highcourt")
 {
     check_items_plaintiff_highcourt();
+    check_items_plaintiff_highcourt_custom();
 }
 
-if (global.BILL_ON_BEHALF_OF == "Plaintiff")
-and global.BILL_COURT = "Circuit"
+//if  (global.BILL_ON_BEHALF_OF == "Plaintiff")
+if (global.BILL_COURT = "Circuit")
 {
     check_items_plaintiff_circuit();
+    check_items_plaintiff_circuit_custom();
 }
 
+
+
+/*
 // these need to be changed to check_items_defendant_whatever();
+
 if (global.BILL_ON_BEHALF_OF == "Defendant")
 and global.BILL_COURT = "Highcourt"
 {
@@ -81,6 +88,7 @@ and global.BILL_COURT = "Circuit"
 {
     check_items_plaintiff_circuit();
 }
+*/
 </string>
           </argument>
         </arguments>

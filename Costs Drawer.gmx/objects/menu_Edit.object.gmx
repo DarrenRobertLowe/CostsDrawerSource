@@ -70,6 +70,9 @@ ds_list_add(menuItems,          "Senior Counsel Name");
 ds_list_add(menuItems,          "Junior Counsel Name");
 
 ds_list_add(menuItems,          "break");               // "_____________"
+ds_list_add(menuItems,          "Edit Custom Items...");
+
+ds_list_add(menuItems,          "break");               // "_____________"
 
 ds_list_add(menuItems,          "Change V.A.T. amount");
 

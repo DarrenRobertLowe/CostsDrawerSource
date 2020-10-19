@@ -102,5 +102,14 @@ or (window_get_height() != old_window_height)
         surface_resize(application_surface,view_wview,view_hview);
         
         event_user(0);
+        
+        /// UPDATE THE DEFAULT ITEMS EDITOR POSITIONS
+        if (instance_exists(DEFAULT_ITEMS_EDITOR))
+        {
+            with (DEFAULT_ITEMS_EDITOR)
+            {
+                default_items_editor_get_positions();
+            }
+        }
     }
 }

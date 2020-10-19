@@ -96,7 +96,6 @@ if (x2 &lt; endX) // don't show if there's not enough space
     if (global.GUI_SCALE == 1.5) then draw_set_font(font_GUI_large);
     draw_set_valign(fa_top);
     
-    
     // COLOR and DRAW NAME
     if (global.SENIOR_COUNSEL != "")
     {
@@ -111,7 +110,8 @@ if (x2 &lt; endX) // don't show if there's not enough space
     
     
     /* Functionality */
-    if (toggle = 1)
+    if  (toggle == 1)
+    and (global.popup == 0)
     {
         draw_set_color(global.highlightColor);
         draw_set_alpha(global.highlightAlpha);

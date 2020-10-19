@@ -649,6 +649,29 @@ if (global.BILL_COURT == "Highcourt")
         if (global.BILL_ON_BEHALF_OF == "Plaintiff")
         then newItem = insert_item(macro_schedulePursuantTo_SI_391_1998,pos+1);
     }
+    
+    
+    
+    // CUSTOM ITEMS
+    var array = global.arrayOfHighCourtCustomItemValues;
+    var size  = array_height_2d(array);
+    for(var i=0; i<size; i++)
+    {
+        if ( item == array[i,0] )   // if we click on an item of this name
+        {
+            newItem = insert_item(USER_ITEM,pos+1);
+            newItem.description  = array[i,0];
+            
+            newItem.outlay       = real(array[i,1]);
+            newItem.professional = real(array[i,2]);
+            with (newItem)
+            {
+                confirmDescription(description);
+                outlayText = formatQuantum(outlay);
+                professionalText = formatQuantum(professional);
+            }
+        }
+    }
 } // END OF HIGHCOURT
 
 
@@ -1007,19 +1030,30 @@ if (global.BILL_COURT == "Circuit")
     {
         newItem =  instance_create(0,0,lastPage_CC_stampOnCertificate)
     }
-
+    
+    
+    // CUSTOM ITEMS
+    var array = global.arrayOfCicruitCourtCustomItemValues;
+    var size  = array_height_2d(array);
+    for(var i=0; i<size; i++)
+    {
+        if ( item == array[i,0] )   // if we click on an item of this name
+        {
+            newItem = insert_item(USER_ITEM,pos+1);
+            newItem.description  = array[i,0];
+            
+            newItem.outlay       = real(array[i,1]);
+            newItem.professional = real(array[i,2]);
+            with (newItem)
+            {
+                confirmDescription(description);
+                outlayText = formatQuantum(outlay);
+                professionalText = formatQuantum(professional);
+            }
+        }
+    }
 } // END OF CIRCUIT COURT
 
-
-// Finish up
-/*
-if (newItem > -1)
-{
-    global.selected = newItem;
-    newItem.selectedField = "description";
-    view_jump_to_row(newItem.row);
-}
-*/
 
 if (newItem > -1)
 {

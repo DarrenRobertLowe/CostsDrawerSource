@@ -678,6 +678,14 @@
     <sprite>sprites\spr_search</sprite>
     <sprite>sprites\spr_prev_tip</sprite>
     <sprite>sprites\spr_next_tip</sprite>
+    <sprites name="Item Editor Popup">
+      <sprite>sprites\spr_popup_save</sprite>
+      <sprite>sprites\spr_popup_close</sprite>
+      <sprite>sprites\spr_popup_add</sprite>
+      <sprite>sprites\spr_popup_delete</sprite>
+      <sprite>sprites\spr_popup_moveUp</sprite>
+      <sprite>sprites\spr_popup_moveDown</sprite>
+    </sprites>
     <sprite>sprites\spr_vatSwitch</sprite>
   </sprites>
   <backgrounds name="background">
@@ -686,6 +694,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\APPENDIX_W_AND_OTHER_FEES.gml</script>
+    <script>scripts\APPENDIX_W_AND_OTHER_FEES_custom.gml</script>
     <scripts name="START">
       <script>scripts\find_templates.gml</script>
       <script>scripts\opening_screen_recent_files.gml</script>
@@ -757,6 +766,11 @@
       <script>scripts\draw_set_font_scaled.gml</script>
       <script>scripts\draw_set_font_GUI_scaled.gml</script>
     </scripts>
+    <scripts name="Mouse Click">
+      <script>scripts\setup_clickTimer.gml</script>
+      <script>scripts\double_clicked.gml</script>
+      <script>scripts\reset_clickTime.gml</script>
+    </scripts>
     <scripts name="mouseOver scripts">
       <scripts name="item">
         <script>scripts\mouseOverChecks.gml</script>
@@ -784,6 +798,7 @@
         <script>scripts\mouseOverAddress.gml</script>
         <script>scripts\mouseOverCostsPursuant.gml</script>
         <script>scripts\mouseOverVAT.gml</script>
+        <script>scripts\mouse_over_popup_area.gml</script>
       </scripts>
       <scripts name="GUI regions">
         <script>scripts\mouseOverMenuArea.gml</script>
@@ -808,6 +823,9 @@
       <script>scripts\mouseIsOverRightColumnDivider.gml</script>
       <script>scripts\mouseInsideWindow.gml</script>
       <script>scripts\mouseIsOverWindowResizeArea.gml</script>
+      <scripts name="POPUPS">
+        <script>scripts\mouseOverDefaultItems_Scrollbar.gml</script>
+      </scripts>
     </scripts>
     <scripts name="Checks">
       <script>scripts\in_view.gml</script>
@@ -1195,6 +1213,32 @@
     <script>scripts\draw_GUI_dividers.gml</script>
     <script>scripts\split_item_at_char.gml</script>
     <script>scripts\reset_text_highlight.gml</script>
+    <scripts name="POPUPS">
+      <scripts name="Default Items Editor">
+        <script>scripts\default_items_keyboard_controls.gml</script>
+        <script>scripts\save_item_lists.gml</script>
+        <script>scripts\default_items_editor_getMaxItem.gml</script>
+        <script>scripts\default_items_editor_logic_customItems.gml</script>
+        <script>scripts\default_items_editor_logic_defaultItems.gml</script>
+        <script>scripts\default_items_editor_draw_popupWindow.gml</script>
+        <script>scripts\default_items_array_swap.gml</script>
+        <script>scripts\constrain_item_editor_scrolling.gml</script>
+        <script>scripts\item_editor_view_follow_selectedIndex.gml</script>
+        <script>scripts\items_editor_edit_description.gml</script>
+        <script>scripts\items_editor_edit_outlay.gml</script>
+        <script>scripts\items_editor_edit_professional.gml</script>
+        <script>scripts\save_customItems.gml</script>
+        <script>scripts\load_customItems.gml</script>
+        <script>scripts\load_customItems_getVal.gml</script>
+        <script>scripts\load_customItems_getDescription.gml</script>
+        <script>scripts\check_items_plaintiff_circuit_custom.gml</script>
+        <script>scripts\check_items_plaintiff_highcourt_custom.gml</script>
+        <script>scripts\customItems_get_current_item_from_scrollbar.gml</script>
+        <script>scripts\default_items_editor_draw_headerFooter.gml</script>
+        <script>scripts\default_items_editor_get_positions.gml</script>
+      </scripts>
+    </scripts>
+    <script>scripts\text_remove_special_chars_lite.gml</script>
     <script>scripts\update_right_column_content.gml</script>
     <script>scripts\switch_vat_amount.gml</script>
     <script>scripts\update_vat_descriptions.gml</script>
@@ -1626,6 +1670,22 @@
     <object>objects\VAT_CHANGER</object>
     <object>objects\SEARCH_HIGHLIGHTER</object>
     <object>objects\STARTUP_LOGGER</object>
+    <objects name="POPUPS">
+      <object>objects\POPUP_BUTTON</object>
+      <objects name="Default Items Editor">
+        <object>objects\DEFAULT_ITEMS_EDITOR</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_done</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_save</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_add</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_delete</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_moveUp</object>
+        <object>objects\button_DEFAULT_ITEMS_EDIT_moveDown</object>
+        <object>objects\default_items_custom_scrollbar</object>
+        <object>objects\default_items_editor_scrollbar_buttons_PARENT</object>
+        <object>objects\default_items_custom_scrollbar_up</object>
+        <object>objects\default_items_custom_scrollbar_down</object>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\OPENING_SCREEN</room>

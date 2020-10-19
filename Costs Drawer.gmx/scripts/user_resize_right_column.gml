@@ -1,12 +1,16 @@
 /// user_resize_right_column()
 
+// exit conditions
+if (global.popup != 0) then exit;
+
+// setup
 var mouseX      = window_mouse_get_x();        // takes the x position from the gui layer and translates it to mouse_x
 var mouseY      = window_mouse_get_y();        // takes the y position from the gui layer and translates it to mouse_y
 var windowWidth = window_get_width();
 var viewX       = view_xview[0];
 var mouseIsOver = false;
 
-
+// code
 if ( mouseIsOverRightColumnDivider(mouseX, mouseY) )
 then mouseIsOver = true;
 
