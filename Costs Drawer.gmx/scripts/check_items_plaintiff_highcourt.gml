@@ -19,7 +19,7 @@ for (var i=0; i<size; i++)
     ds_list_insert(list,i,str);
 }
 
-/// REMOVE THE FOLLOWING ITEMS FROM THE LIST IF THEY ALREADY EXIT IN THE DOCUMENT
+/// REMOVES THE FOLLOWING ITEMS FROM THE LIST IF THEY ALREADY EXIST IN THE DOCUMENT
 var item = item_ServiceOfSummonsOnDefendant;
 if (instance_exists(item))
 {
@@ -66,6 +66,17 @@ if (instance_exists(item))
     var pos = ds_list_find_index(list,"Service of the Summons on the Defendant");
     ds_list_delete(list,pos);
 }
+
+
+var item = item_plaintiff_notationOfAppearance;
+if (instance_exists(item))
+{
+    var pos = ds_list_find_index(list,"Notation of Appearance");
+    ds_list_delete(list,pos);
+}
+
+
+
 
 var item = item_feeOnRepliesToNoticeForParticulars;
 if (instance_exists(item))
@@ -214,6 +225,16 @@ if (instance_exists(item))
     ds_list_delete(list,pos);
 }
 
+
+var item = item_briefForCounselToAttendForHearingDate;
+if (instance_exists(item))
+{
+    var pos = ds_list_find_index(list,"Brief For Counsel To Attend for Hearing Date");
+    ds_list_delete(list,pos);
+}
+
+
+
 var item = item_attendingCourtObtainingHearingDate;
 if (instance_exists(item))
 {
@@ -235,6 +256,7 @@ if (instance_exists(item))
     ds_list_delete(list,pos);
 }
 
+
 var item = item_preparationOfBriefForCounselWithDocuments;
 if (instance_exists(item))
 {
@@ -255,6 +277,16 @@ if (instance_exists(item))
     var pos = ds_list_find_index(list,"Attending Consultation Prior to Hearing");
     ds_list_delete(list,pos);
 }
+
+var item = item_preparationOfBriefForTrialOfAction;
+if (instance_exists(item))
+{
+    var pos = ds_list_find_index(list,"Brief for counsel for Trial of Action");
+    ds_list_delete(list,pos);
+}
+
+
+
 
 var item = item_paidLawSocietyForConsultationRooms;
 if (instance_exists(item))

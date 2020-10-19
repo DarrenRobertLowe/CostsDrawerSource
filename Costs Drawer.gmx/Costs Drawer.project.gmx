@@ -686,6 +686,7 @@
       <sprite>sprites\spr_popup_moveUp</sprite>
       <sprite>sprites\spr_popup_moveDown</sprite>
     </sprites>
+    <sprite>sprites\spr_vatSwitch</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -1238,6 +1239,12 @@
       </scripts>
     </scripts>
     <script>scripts\text_remove_special_chars_lite.gml</script>
+    <script>scripts\update_right_column_content.gml</script>
+    <script>scripts\switch_vat_amount.gml</script>
+    <script>scripts\update_vat_descriptions.gml</script>
+    <script>scripts\update_vat_quantum.gml</script>
+    <script>scripts\update_entire_document.gml</script>
+    <script>scripts\ask_switch_vat_amount.gml</script>
   </scripts>
   <fonts name="fonts">
     <fonts name="GUI">
@@ -1449,6 +1456,7 @@
       <object>objects\keyboard_CURSOR</object>
       <object>objects\button_search_prev</object>
       <object>objects\button_search_next</object>
+      <object>objects\button_vatSwitch</object>
       <object>objects\button_plaintiff_defendant_switch</object>
     </objects>
     <objects name="SET ITEMS">
@@ -1659,6 +1667,7 @@
     <object>objects\PROGRESS_BAR</object>
     <object>objects\TIPS</object>
     <object>objects\SEARCH_TEXT</object>
+    <object>objects\VAT_CHANGER</object>
     <object>objects\SEARCH_HIGHLIGHTER</object>
     <object>objects\STARTUP_LOGGER</object>
     <objects name="POPUPS">

@@ -563,6 +563,13 @@ and (exists(MASTER))
                         if !instance_exists(DEFAULT_ITEMS_EDITOR) then instance_create(0,0,DEFAULT_ITEMS_EDITOR);
                     }
                     
+                    /// CHANGE VAT
+                    if (item == "Change V.A.T. amount")
+                    {
+                        ask_switch_vat_amount();
+                    }
+                    
+                    
                     /// DICTIONARY STUFF
                     if (item == "Spellcheck - Add Word")
                     {

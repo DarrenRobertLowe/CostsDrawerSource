@@ -1,7 +1,9 @@
 /// CREATE .XLSX FILE
 
 // update items for export
-update_totals(0);   // totals
+
+//update_totals(0);   // totals
+update_entire_document();
 count_folios();
 lastPage_VATNumbers.seniorLine = string(global.SENIOR_COUNSEL) +" " +string(lastPage_VATNumbers.seniorVATNo);
 lastPage_VATNumbers.juniorLine = string(global.JUNIOR_COUNSEL) +" " +string(lastPage_VATNumbers.juniorVATNo);

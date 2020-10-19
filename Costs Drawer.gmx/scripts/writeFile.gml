@@ -59,6 +59,9 @@ file = file_text_open_write(argument0);
             file_text_write_string( file, string(view_yview[0]));       // view y pos
             file_text_write_string( file, string(";"));
             
+            file_text_writeln(file);
+            file_text_write_string( file, string(global.VATamount));
+            file_text_write_string( file, string(";"));
             
             
             //// FIRST PAGE OBJECTS...

@@ -51,7 +51,7 @@ master              = -1;
 instructionsFee     = false;
 seeFeeLater         = false;
 
-description         = "V.A.T. @ "+ string(global.VATamount * 100) +"%";;
+description         = "V.A.T. @ "+ string(global.VATamount * 100) +"%";
 formatDescription(descriptionList,description,false); // needed for xlsx export
 formatDescription(shownDescriptionList,description,false); // needed for xlsx export
 lines               = 2;
@@ -178,7 +178,12 @@ and !(instance_exists(master))
 }
 else
 {
-    outlay = ((master.outlay / 100) * 23);
+    // keep VAT up to date
+    var preOutlay = outlay;
+    outlay = (master.outlay * global.VATamount);//((master.outlay / 100) * 23);
+    if (outlay != preOutlay)
+      then update_vat_quantum();
+    
     
     if (in_view())
     {

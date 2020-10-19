@@ -110,8 +110,11 @@ if ( in_view() )
             if ( mouse_check_button_released(mb_left) )
             {
                 global.startWitnessesOnNewPage = !(global.startWitnessesOnNewPage)
-                DOC_ORGANIZER.startFrom = GENERAL_INSTRUCTIONS_FEE.id;
-                DOC_ORGANIZER.alarm[0] = 1;
+                //DOC_ORGANIZER.startFrom = GENERAL_INSTRUCTIONS_FEE.id;
+                //DOC_ORGANIZER.alarm[0] = 1;
+                
+                update_entire_document();
+                
                 set_unsaved();
             }
         }

@@ -63,20 +63,18 @@ if (file_exists(global.USER_FILENAME))
         /* docVer is of course, short for document version.
          * It should be located directly after the version number on the first line e.g. 2.2.1.0;
          * The current docVer used in the check and written to saved files is the macro CURRENT_DOCUMENT_VERSION
-        */     
+        */
          if (string_count("docVer:",line) > 0) // if there IS a "docVer:" 
          {
             var docVerPos   = (string_pos("docVer:", line) +7);
-            var docVerStr   = string_copy(line, docVerPos, string_length(line));
-            
+            var docVerStr   = string_copy(line, docVerPos, 3);//string_length(line));
+            docVer = real(docVerStr);
             /* we could put a check here to see if the string is syntactically valid and 
              * reject it if it isn't. Right now, it doesn't crash as a result of being passed
              * letters and such, so it's pretty grand. Worst case is that a file will be messed
              * up when importing, but it will be the fault of whoever modified the file manually.
              */
-            var docVer = get_real_version(docVerStr);
-            //show_message("docVer ripped as "+string(docVer));
-            if (docVer > get_real_version(CURRENT_DOCUMENT_VERSION))
+            if (docVer > real(CURRENT_DOCUMENT_VERSION))
             {
                 show_message("Cannot open file!#File is from a newer version of Costs Drawer! (v"+string(fileVersion)+")#You must update Costs Drawer to the latest version in order to open this file!");
                 new_file();
@@ -96,8 +94,12 @@ if (file_exists(global.USER_FILENAME))
         
         
         
+        
+        
         // PUT SPECIFIC VERSIONS HERE FOR BACKWARDS COMPATIBILITY
         // e.g. if fileVersionNo < 1020 then load_file_1019()
+    
+        
         /// VALUES
         // myID count
         file_text_readln(file);                                 // move onto next line
@@ -141,6 +143,17 @@ if (file_exists(global.USER_FILENAME))
         var fieldEnd        = string_pos(";",line)-1;           // find the string before ";"
         global.view_y_to_load   = real(string_copy(line,0,fieldEnd));// view y pos
         
+        // VAT amount
+        if (docVer >= 2.2)
+        {
+            var fieldEnd = 0;
+            file_text_readln(file);                                 // move onto next line
+            line             = file_text_read_string(file);
+            fieldEnd         = string_pos(";",line)-1;               // find the string before ";"
+            global.VATamount = real(string_copy(line,0,fieldEnd));
+            //show_message("global.VATamount ripped as "+string(global.VATamount));
+        }
+        
         
         ds_list_clear(global.listOfItems);
         ds_list_clear(global.LAST_PAGE_ITEMS);
@@ -148,41 +161,35 @@ if (file_exists(global.USER_FILENAME))
         ds_list_clear(global.CAUTIONS);
         
         
-        
-        
-        
-        
         // CREATE THE FIRST PAGE OBJECTS...
         create_first_page();
+
         
-        /* GET REGION INFO (Or whatever info the users decided to put there)
-         * Applies only docVer 2.1+
-         * Note: docVer 2.1 = 20100
-         * Test: show_message("docVer of file is "+string(docVer));
-         * Test: show_message("current document version of Costs Drawer is "+string(get_real_version(CURRENT_DOCUMENT_VERSION)))
-         */
-        if (docVer >= 20100)
+        
+        if (docVer >= 2.1)
         {
+            /* GET REGION INFO (Or whatever info the users decided to put there)
+             * Applies only docVer 2.1+
+             */
             var fieldEnd = 0;
             
-            //show_message("docVer is "+string(docVer) +" which is >= than 20100");
             // region line 1
             file_text_readln(file);                                 // move onto next line
             line            = file_text_read_string(file);
             fieldEnd        = string_pos(";",line)-1;               // find the string before ";"
-            firstPage_regionInfo_line1_docVer21.description = string_copy(line,0,fieldEnd);// view y pos
+            firstPage_regionInfo_line1_docVer21.description = string_copy(line,0,fieldEnd);
             
             // region line 2
             file_text_readln(file);                                 // move onto next line
             line            = file_text_read_string(file);
             fieldEnd        = string_pos(";",line)-1;               // find the string before ";"
-            firstPage_regionInfo_line2_docVer21.description = string_copy(line,0,fieldEnd);// view y pos
+            firstPage_regionInfo_line2_docVer21.description = string_copy(line,0,fieldEnd);
              
             // region line 3
             file_text_readln(file);                                 // move onto next line
             line            = file_text_read_string(file);
             fieldEnd        = string_pos(";",line)-1;               // find the string before ";"
-            firstPage_regionInfo_line3_docVer21.description = string_copy(line,0,fieldEnd);// view y pos
+            firstPage_regionInfo_line3_docVer21.description = string_copy(line,0,fieldEnd);
         }
         
         
@@ -443,6 +450,12 @@ if (file_exists(global.USER_FILENAME))
             
             
             //////// SUCCESS ///////
+            //with (VAT)
+            //{
+                //update_vat_quantum();
+           // }
+            update_vat_descriptions();
+            
             show_debug_message("successfully loaded file!");
             
             // update filename and directory
