@@ -557,6 +557,11 @@ and (exists(MASTER))
                         }
                     }
                     
+                    /// EDIT CUSTOM ITEMS
+                    if (item == "Edit Custom Items...")
+                    {
+                        if !instance_exists(DEFAULT_ITEMS_EDITOR) then instance_create(0,0,DEFAULT_ITEMS_EDITOR);
+                    }
                     
                     /// DICTIONARY STUFF
                     if (item == "Spellcheck - Add Word")

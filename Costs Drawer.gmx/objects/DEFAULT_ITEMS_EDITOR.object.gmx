@@ -86,15 +86,16 @@ setup_clickTimer(); // for double-clicking checks
 // initialize the button variables as default_items_editor_get_positions
 // needs to check for their existance and move them if they exist whenever
 // the user resizes the window.
-saveButton      = -1;
-closeButton     = -1;
-addButton       = -1;
-deleteButton    = -1;
-moveUpButton    = -1;
-moveDownButton  = -1;
-customScrollbar = -1;
+saveButton          = -1;
+closeButton         = -1;
+addButton           = -1;
+deleteButton        = -1;
+moveUpButton        = -1;
+moveDownButton      = -1;
+customScrollbar     = -1;
 customScrollbarUp   = -1;
 customScrollbarDown = -1;
+
 
 // position everything
 default_items_editor_get_positions();

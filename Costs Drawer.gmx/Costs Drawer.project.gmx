@@ -1231,6 +1231,7 @@
         <script>scripts\load_customItems_getVal.gml</script>
         <script>scripts\load_customItems_getDescription.gml</script>
         <script>scripts\check_items_plaintiff_circuit_custom.gml</script>
+        <script>scripts\check_items_plaintiff_highcourt_custom.gml</script>
         <script>scripts\customItems_get_current_item_from_scrollbar.gml</script>
         <script>scripts\default_items_editor_draw_headerFooter.gml</script>
         <script>scripts\default_items_editor_get_positions.gml</script>

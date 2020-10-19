@@ -62,7 +62,7 @@ alarm[0] = 2; /// CHECK THE LIST
 if (global.BILL_COURT = "Highcourt")
 {
     check_items_plaintiff_highcourt();
-    //check_items_plaintiff_highcourt_custom();
+    check_items_plaintiff_highcourt_custom();
 }
 
 //if  (global.BILL_ON_BEHALF_OF == "Plaintiff")
