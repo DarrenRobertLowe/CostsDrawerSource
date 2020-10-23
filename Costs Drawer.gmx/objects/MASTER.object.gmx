@@ -150,7 +150,6 @@ global.totalRows            = 0;                //42;
 global.rowsPerPage          = 42;
 global.defaultRowHeight     = 25;               // used for some objects like Tooltips and item editor
 global.rowHeight            = 25;               //14    //0.26 inches
-global.defaultRowHeight     = global.rowHeight; //14    //0.26 inches
 global.documentHeight       = (global.totalRows * global.rowHeight);
 global.pageStart            = 92;               // vertical start position of page
 global.bufferRowsPerPage    = 3;                // these rows are reserved for page number
