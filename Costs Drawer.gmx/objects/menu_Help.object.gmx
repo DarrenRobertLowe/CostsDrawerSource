@@ -55,6 +55,8 @@ ds_list_add(menuItems,          "Give Feedback...");
 ds_list_add(menuItems,          "break");               // "_____________"
 //ds_list_add(menuItems,          "Release Notes");
 ds_list_add(menuItems,          "About Costs Drawer");
+ds_list_add(menuItems,          "break");               // "_____________"
+ds_list_add(menuItems,          "Open AppData Folder");
 </string>
           </argument>
         </arguments>

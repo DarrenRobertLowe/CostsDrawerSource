@@ -1228,7 +1228,9 @@
         <script>scripts\items_editor_edit_outlay.gml</script>
         <script>scripts\items_editor_edit_professional.gml</script>
         <script>scripts\save_customItems.gml</script>
+        <script>scripts\backup_customItems.gml</script>
         <script>scripts\load_customItems.gml</script>
+        <script>scripts\load_customItemsFile.gml</script>
         <script>scripts\load_customItems_getVal.gml</script>
         <script>scripts\load_customItems_getDescription.gml</script>
         <script>scripts\check_items_plaintiff_circuit_custom.gml</script>

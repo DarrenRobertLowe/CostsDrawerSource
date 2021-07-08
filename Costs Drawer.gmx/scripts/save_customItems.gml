@@ -1,6 +1,8 @@
-///save_customItems()
+///save_customItems(array)
 var filename = "";
 //var array    = -1;
+var array = -1;
+array = argument0;
 
 if (global.BILL_COURT == "Circuit")
 {

@@ -584,7 +584,7 @@ if (global.BILL_COURT = "Circuit")
 
 // save_item_lists();
 // save_defaultItems();
-save_customItems();
+save_customItems(array);
 listArrayBeforeEditing = array;
 
 saveButton.visible  = false;
@@ -618,11 +618,23 @@ if (changesMade == true) // changes have been made so we must ask the user if th
 {
     if (show_question("Changes will NOT be saved. Close anyway?"))
     {
-        // revert the array to what it was last saved as
-        if (global.BILL_COURT == "Circuit")
-          then global.arrayOfCicruitCourtCustomItemValues   = listArrayBeforeEditing;
-          else global.arrayOfHighCourtCustomItemValues      = listArrayBeforeEditing;
-            
+        // Hacky bugfix for a strange bug where we end up with an array of 1 item with description "0"
+        var meArray = listArrayBeforeEditing;
+        var size    = array_height_2d(meArray);
+        if  (size == 1)
+        and (meArray[0,0] == 0)
+        {
+            proceed = true;
+        }
+        else
+        {
+            // revert the array to what it was last saved as
+            if (global.BILL_COURT == "Circuit")
+              then global.arrayOfCicruitCourtCustomItemValues   = listArrayBeforeEditing;
+              else global.arrayOfHighCourtCustomItemValues      = listArrayBeforeEditing;
+        }
+        
+        
         proceed = true;
     }
 }

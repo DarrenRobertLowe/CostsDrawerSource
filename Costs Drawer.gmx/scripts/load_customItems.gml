@@ -1,4 +1,4 @@
-///save_customItems()
+///load_customItems()
 var filename = "";
 var array    = -1;
 

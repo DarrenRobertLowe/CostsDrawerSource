@@ -59,6 +59,8 @@ ds_list_add(menuItems,          "break");               // "_____________"
 ds_list_add(menuItems,          "Toggle Large Menu Buttons");
 ds_list_add(menuItems,          "break");               // "_____________"
 ds_list_add(menuItems,          "Toggle Keep on Top");
+
+
 </string>
           </argument>
         </arguments>
