@@ -71,6 +71,10 @@ ds_list_add(menuItems,          "Junior Counsel Name");
 
 ds_list_add(menuItems,          "break");               // "_____________"
 ds_list_add(menuItems,          "Edit Custom Items...");
+ds_list_add(menuItems,          "break");               // "_____________"
+ds_list_add(menuItems,          "Backup Custom Items");
+ds_list_add(menuItems,          "Load Custom Items File");
+
 
 ds_list_add(menuItems,          "break");               // "_____________"
 

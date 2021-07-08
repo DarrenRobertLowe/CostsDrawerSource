@@ -563,6 +563,24 @@ and (exists(MASTER))
                         if !instance_exists(DEFAULT_ITEMS_EDITOR) then instance_create(0,0,DEFAULT_ITEMS_EDITOR);
                     }
                     
+                    /// BACKUP CUSTOM ITEMS
+                    if (item == "Backup Custom Items")
+                    {
+                        backup_customItems();
+                    }
+                    
+                    /// LOAD CUSTOM ITEMS
+                    if (item == "Load Custom Items File")
+                    {
+                        if (show_question("Warning! This will overwrite your current custom items! Would you like to create a backup of your current Custom Items first?"))
+                        {
+                            backup_customItems();
+                        }
+                        
+                        load_customItemsFile();
+                    }
+                    
+                    
                     /// CHANGE VAT
                     if (item == "Change V.A.T. amount")
                     {
@@ -717,6 +735,12 @@ and (exists(MASTER))
     
                         window_set_topmost(real(global.keepWindowOnTop));
                         item = "";
+                    }
+                    
+                    
+                    if (item == "Open AppData Folder")
+                    {
+                        shell_do("explore", get_appdata_folder());
                     }
                     
                     
